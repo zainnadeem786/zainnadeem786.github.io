@@ -692,14 +692,14 @@ p {
   height: 100%;
   overflow: visible;
   fill: none;
-  stroke: color-mix(in srgb, var(--accent) 37%, transparent);
+  stroke: color-mix(in srgb, var(--accent) 22%, transparent);
   stroke-linecap: round;
   stroke-width: 1.15;
 }
 
 .network-lines .network-orbit {
-  stroke: color-mix(in srgb, var(--accent) 16%, transparent);
-  stroke-dasharray: 3 9;
+  stroke: color-mix(in srgb, var(--accent) 24%, transparent);
+  stroke-dasharray: 3 10;
 }
 
 .network-node {
@@ -720,7 +720,6 @@ p {
   line-height: 1.2;
   text-align: center;
   backdrop-filter: blur(0.65rem);
-  animation: network-drift 10s var(--ease) infinite alternate;
 }
 
 .network-node::before {
@@ -743,25 +742,21 @@ p {
   color: var(--text);
   background: color-mix(in srgb, var(--surface) 78%, transparent);
   transform: translate(-50%, -50%);
-  animation: network-core-drift 12s var(--ease) infinite alternate;
 }
 
 .network-backend {
   top: 11%;
   left: 14%;
-  animation-delay: -2s;
 }
 
 .network-ai {
   top: 15%;
   right: 10%;
-  animation-delay: -5s;
 }
 
 .network-security {
   right: 8%;
   bottom: 10%;
-  animation-delay: -7s;
 }
 
 .network-open-source {
@@ -769,17 +764,49 @@ p {
   left: 12%;
   min-width: 6rem;
   min-height: 6rem;
-  animation-delay: -9s;
 }
 
-@keyframes network-drift {
-  from { transform: translate3d(0, -2px, 0); }
-  to { transform: translate3d(3px, 3px, 0); }
+@supports (offset-path: ellipse(40% 30% at 50% 50%)) {
+  .network-orbit-node {
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    offset-path: ellipse(34.5% 28% at 50% 50%);
+    offset-anchor: center;
+    offset-rotate: 0deg;
+    animation: engineering-orbit 40s linear infinite;
+    will-change: offset-distance;
+  }
+
+  .network-backend {
+    offset-distance: 0%;
+    animation-delay: 0s;
+  }
+
+  .network-ai {
+    offset-distance: 25%;
+    animation-delay: -10s;
+  }
+
+  .network-security {
+    offset-distance: 50%;
+    animation-delay: -20s;
+  }
+
+  .network-open-source {
+    offset-distance: 75%;
+    animation-delay: -30s;
+  }
+
+  .domain-network:hover .network-orbit-node {
+    animation-play-state: paused;
+  }
 }
 
-@keyframes network-core-drift {
-  from { transform: translate3d(-50%, calc(-50% - 2px), 0); }
-  to { transform: translate3d(calc(-50% + 2px), calc(-50% + 2px), 0); }
+@keyframes engineering-orbit {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
 }
 
 /* 08. Section primitives */
@@ -2165,6 +2192,23 @@ p {
   }
 }
 
+@media (max-width: 47.99rem) {
+  .domain-network {
+    width: min(100%, 24rem);
+  }
+
+  .network-orbit-node {
+    animation: none;
+    will-change: auto;
+  }
+}
+
+@media (min-width: 48rem) and (max-width: 56.24rem) {
+  .domain-network {
+    width: min(100%, 24rem);
+  }
+}
+
 @media (max-width: 26rem) {
   .network-node {
     min-width: 4.65rem;
@@ -2208,6 +2252,11 @@ p {
     opacity: 1;
     filter: none;
     transform: none;
+  }
+
+  .network-orbit-node {
+    animation: none !important;
+    will-change: auto;
   }
 }
 
