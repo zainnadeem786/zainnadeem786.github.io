@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>(()=>{try{const s=localStorage.getItem("theme");document.documentElement.dataset.theme=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Brain | Zain Nadeem</title>
+  <meta name="description" content="AI Brain is a portable local AI knowledge and engineering workstation for grounded research, repository intelligence, security analysis, and approval-led agentic coding.">
+  <meta name="author" content="Zain Nadeem">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#f5f7f4" data-theme-color>
+  <link rel="canonical" href="https://zainnadeem786.github.io/projects/ai-brain.html">
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta property="og:type" content="article"><meta property="og:site_name" content="Zain Nadeem">
+  <meta property="og:title" content="AI Brain | Zain Nadeem">
+  <meta property="og:description" content="A portable local AI knowledge and engineering workstation—not a cloud chatbot.">
+  <meta property="og:url" content="https://zainnadeem786.github.io/projects/ai-brain.html">
+  <meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg">
+  <meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AI Brain | Zain Nadeem"><meta name="twitter:description" content="A portable local AI knowledge and engineering workstation."><meta name="twitter:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="article-page">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" data-header><div class="container nav-shell">
+    <a class="brand" href="../index.html" aria-label="Zain Nadeem, home"><span class="brand-mark" aria-hidden="true">ZN</span><span>Zain Nadeem</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+    <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation"><a class="nav-link" href="../index.html#about">About</a><a class="nav-link" href="../index.html#projects" aria-current="page">Projects</a><a class="nav-link" href="../research.html">Research</a><a class="nav-link" href="../open-source.html">Open Source</a><a class="nav-link" href="../index.html#expertise">Expertise</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.2A8.7 8.7 0 0 1 8.8 3.8 8.7 8.7 0 1 0 20.2 15.2Z"/></svg></button><a class="nav-link nav-link-accent" href="../index.html#contact">Contact</a></nav>
+  </div></header>
+
+  <main id="main-content">
+    <header class="page-hero"><div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="../index.html#projects">Projects</a><span aria-hidden="true">/</span><span>AI Brain</span></nav>
+      <div class="case-hero-layout">
+        <div class="reveal"><p class="case-kicker">Local AI / Agentic Systems</p><h1>AI Brain</h1><p class="case-positioning">A portable local AI knowledge and engineering workstation built for grounded answers, repository intelligence, research automation, and human-controlled agentic work.</p></div>
+        <dl class="project-facts reveal">
+          <div><dt class="fact-label">Status</dt><dd><span class="status status-neutral">Personal System / Active</span></dd></div>
+          <div><dt class="fact-label">Runtime</dt><dd>Windows 11 · SSD-portable · Offline-capable</dd></div>
+          <div><dt class="fact-label">Core stack</dt><dd>FastAPI · Next.js · PostgreSQL · ChromaDB</dd></div>
+          <div><dt class="fact-label">Models</dt><dd>Mistral · Phi-3 · Qwen2.5-Coder 7B via Ollama</dd></div>
+        </dl>
+      </div>
+    </div></header>
+
+    <div class="article-shell">
+      <article class="case-study">
+        <section class="case-section reveal">
+          <div class="case-section-heading"><span class="article-label">01 / Overview</span><h2>A local workstation, not a cloud chatbot.</h2></div>
+          <div class="case-section-body"><p>AI Brain brings knowledge, repositories, research sources, security findings, model routing, and controlled engineering actions into one persistent local environment. Its purpose is not generic conversation; it is to support real technical work with inspectable sources and explicit boundaries.</p><p>The system is designed to run from a portable SSD on a Windows 11 workstation. When the required local resources are present, it can work offline and does not depend on paid cloud AI APIs.</p><div class="callout"><strong>Portability is an architecture decision.</strong><p>The SSD-based design keeps the workstation, knowledge, models, and persistent context transportable while preserving a local-first operating model.</p></div></div>
+        </section>
+
+        <section class="case-section reveal">
+          <div class="case-section-heading"><span class="article-label">02 / Architecture</span><h2>Sources are indexed, routed, and grounded locally.</h2></div>
+          <div class="architecture"><p class="architecture-title">Knowledge and task flow</p><div class="architecture-flow architecture-flow-long" aria-label="Knowledge sources move through ingestion, databases, routing, local models, and grounded workflows">
+            <div class="flow-node">Knowledge Sources</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node">Ingestion / Indexing</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node">ChromaDB + PostgreSQL</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node">Task / Source Routing</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node flow-node-accent">Local Models via Ollama</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node">Grounded Response / Agentic Workflow</div>
+          </div></div>
+        </section>
+
+        <section class="case-section reveal">
+          <div class="case-section-heading"><span class="article-label">03 / Knowledge system</span><h2>Persistent context from varied technical sources.</h2></div>
+          <div class="capability-grid">
+            <article class="capability-card"><h3>Local RAG</h3><p>Indexes PDFs, books, pasted notes, GitHub repositories, documentation sites, trusted crawler research, and security scan findings.</p></article>
+            <article class="capability-card"><h3>Repository intelligence</h3><p>Supports local cloning, code and document indexing, repository-specific retrieval, and ChromaDB-backed search.</p></article>
+            <article class="capability-card"><h3>Research automation</h3><p>Uses topic classification, source-quality scoring, deduplication, trusted-only mode, approval workflows, and recursive crawling.</p></article>
+            <article class="capability-card"><h3>Security analysis</h3><p>Normalizes Semgrep and Bandit findings, then uses local Ollama models to add security explanations.</p></article>
+          </div>
+        </section>
+
+        <section class="case-section reveal">
+          <div class="case-section-heading"><span class="article-label">04 / Agentic coding</span><h2>Automation remains bounded by human approval.</h2></div>
+          <div class="case-section-body"><p>The agentic coding mode can plan changes, inspect repository context, propose edits, preview diffs, and suggest commands. Sensitive actions are deliberately gated.</p><ul class="principle-list"><li>Writes require approval before files change.</li><li>Commands require explicit approval before execution.</li><li>Dangerous commands are blocked.</li><li>Audit logs preserve an inspectable record of agentic activity.</li><li>Source-grounded context is preferred over unsupported generation.</li></ul></div>
+        </section>
+
+        <section class="case-section reveal">
+          <div class="case-section-heading"><span class="article-label">05 / Persistence and routing</span><h2>Different stores serve different responsibilities.</h2></div>
+          <div class="decision-grid">
+            <article class="decision-card"><h3>PostgreSQL</h3><p>Maintains durable application state and persistent chat history.</p></article>
+            <article class="decision-card"><h3>ChromaDB</h3><p>Supports vector retrieval for indexed knowledge and repository context.</p></article>
+            <article class="decision-card"><h3>Local cache</h3><p>Keeps frequently needed workstation data close to the runtime.</p></article>
+            <article class="decision-card"><h3>Model routing</h3><p>Routes work across Mistral, Phi-3, and Qwen2.5-Coder 7B through Ollama where relevant.</p></article>
+          </div>
+        </section>
+
+        <section class="case-section reveal">
+          <div class="case-section-heading"><span class="article-label">06 / Technology</span><h2>A full local engineering environment.</h2></div>
+          <div class="tech-grid">
+            <article class="tech-group"><h3>Frontend</h3><p>Next.js · TypeScript · Tailwind CSS</p></article>
+            <article class="tech-group"><h3>Backend</h3><p>FastAPI · SQLAlchemy · Pydantic</p></article>
+            <article class="tech-group"><h3>Data</h3><p>PostgreSQL · ChromaDB · Local cache</p></article>
+            <article class="tech-group"><h3>Local AI</h3><p>Ollama · Mistral · Phi-3 · Qwen2.5-Coder 7B</p></article>
+          </div>
+        </section>
+
+        <aside class="takeaway reveal"><span class="article-label">Key takeaway</span><h2>AI Brain is infrastructure for local technical work.</h2><p>Its distinctive value comes from combining portable local operation, persistent knowledge, source-grounded retrieval, repository intelligence, model routing, and approval-led automation.</p></aside>
+      </article>
+
+      <nav class="project-navigation" aria-label="Project navigation"><a href="secops-ai.html"><span>← Previous project</span><strong>SecOps AI</strong></a><a href="echomind-ai.html"><strong>EchoMind AI</strong><span>Next project →</span></a><div class="back-to-work"><a class="text-link" href="../index.html#projects">Back to selected work <span aria-hidden="true">↑</span></a></div></nav>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-layout"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">ZN</span><span>Zain Nadeem</span></a><p>© <span data-current-year>2026</span> Zain Nadeem</p><a class="text-link" href="../index.html#projects">Selected work <span aria-hidden="true">→</span></a></div></footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

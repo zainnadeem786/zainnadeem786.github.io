@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Zain Nadeem</title>
+  <defs>
+    <linearGradient id="bg" x1="8" y1="5" x2="58" y2="61" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1b2b21"/>
+      <stop offset="1" stop-color="#0b110e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="14" y1="14" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#91cbaa"/>
+      <stop offset="1" stop-color="#4f8f6f"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#bg)" stroke="#496452" stroke-width="2"/>
+  <path d="M17 19h17L17 45h19" fill="none" stroke="url(#accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M39 45V19l10 26V19" fill="none" stroke="#eef5f7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>(()=>{try{const s=localStorage.getItem("theme");document.documentElement.dataset.theme=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SecOps AI | Zain Nadeem</title>
+  <meta name="description" content="SecOps AI is a multi-user SOC investigation platform that turns uploaded and live-streamed logs into detections, correlated campaigns, cases, timelines, and reports.">
+  <meta name="author" content="Zain Nadeem">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#f5f7f4" data-theme-color>
+  <link rel="canonical" href="https://zainnadeem786.github.io/projects/secops-ai.html">
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Zain Nadeem">
+  <meta property="og:title" content="SecOps AI | Zain Nadeem">
+  <meta property="og:description" content="An analyst-grade platform for turning security logs into correlated investigations.">
+  <meta property="og:url" content="https://zainnadeem786.github.io/projects/secops-ai.html">
+  <meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg">
+  <meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SecOps AI | Zain Nadeem">
+  <meta name="twitter:description" content="Correlated SOC investigations from uploaded and live-streamed logs.">
+  <meta name="twitter:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="article-page">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" data-header><div class="container nav-shell">
+    <a class="brand" href="../index.html" aria-label="Zain Nadeem, home"><span class="brand-mark" aria-hidden="true">ZN</span><span>Zain Nadeem</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+    <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation"><a class="nav-link" href="../index.html#about">About</a><a class="nav-link" href="../index.html#projects" aria-current="page">Projects</a><a class="nav-link" href="../research.html">Research</a><a class="nav-link" href="../open-source.html">Open Source</a><a class="nav-link" href="../index.html#expertise">Expertise</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.2A8.7 8.7 0 0 1 8.8 3.8 8.7 8.7 0 1 0 20.2 15.2Z"/></svg></button><a class="nav-link nav-link-accent" href="../index.html#contact">Contact</a></nav>
+  </div></header>
+
+  <main id="main-content">
+    <header class="page-hero"><div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="../index.html#projects">Projects</a><span aria-hidden="true">/</span><span>SecOps AI</span></nav>
+      <div class="case-hero-layout">
+        <div class="reveal"><p class="case-kicker">Security Operations / AI</p><h1>SecOps AI</h1><p class="case-positioning">A multi-user, analyst-grade SOC investigation platform that connects raw log activity into correlated incidents, attacker stories, and reviewable cases.</p></div>
+        <dl class="project-facts reveal">
+          <div><dt class="fact-label">Status</dt><dd><span class="status status-active">Implemented</span></dd></div>
+          <div><dt class="fact-label">Core stack</dt><dd>FastAPI · Next.js · PostgreSQL</dd></div>
+          <div><dt class="fact-label">Data paths</dt><dd>Log uploads · WebSocket ingestion · GeoIP enrichment</dd></div>
+          <div><dt class="fact-label">Role</dt><dd>Investigation support—not analyst replacement</dd></div>
+        </dl>
+      </div>
+    </div></header>
+
+    <div class="article-shell">
+      <article class="case-study">
+        <section class="case-section reveal">
+          <div class="case-section-heading"><span class="article-label">01 / The problem</span><h2>Alerts are fragments. Investigations need a narrative.</h2></div>
+          <div class="case-section-body"><p>Security logs rarely explain an incident on their own. A brute-force pattern, a successful login, endpoint probing, and an injection attempt may arrive as separate events even when they belong to the same campaign.</p><p>SecOps AI was built to move beyond isolated alert presentation. It parses events, creates detections, correlates related behavior, applies a canonical risk view, and gives analysts a persistent case and timeline for investigation.</p><div class="callout"><strong>Designed for analyst support.</strong><p>AI adds context and next-step guidance; the platform does not position automated interpretation as a replacement for professional judgment.</p></div></div>
+        </section>
+
+        <section class="case-section reveal">
+          <div class="case-section-heading"><span class="article-label">02 / Analyst flow</span><h2>From raw events to an investigation record.</h2></div>
+          <div class="architecture"><p class="architecture-title">Investigation pipeline</p><div class="architecture-flow architecture-flow-long" aria-label="Logs move through parsing, detections, correlation, campaigns, risk engine, AI context, and case reporting">
+            <div class="flow-node">Logs / Live Stream</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node">Parsing</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node">Detections</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node">Correlation</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node">Attack Campaigns</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node">Risk Engine</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node flow-node-accent">AI Analyst Context</div><span class="flow-arrow" aria-hidden="true">↓</span><div class="flow-node">Case / Timeline / Report</div>
+          </div></div>
+        </section>
+
+        <section class="case-section reveal">
+          <div class="case-section-heading"><span class="article-label">03 / Detection and correlation</span><h2>Connecting activity into an attacker story.</h2></div>
+          <div class="capability-grid">
+            <article class="capability-card"><h3>Detection coverage</h3><p>Surfaces brute force, 404 scanning, multi-endpoint probing, path traversal, SQL injection, command injection, and suspicious user agents.</p></article>
+            <article class="capability-card"><h3>Compromise correlation</h3><p>Connects failed-login sequences to later success and groups related activity into attack campaigns.</p></article>
+            <article class="capability-card"><h3>Persistent investigations</h3><p>Supports cases, multi-session investigation history, suspicious-activity timelines, SOC-style search, and case sharing.</p></article>
+            <article class="capability-card"><h3>Operational output</h3><p>Adds AI explanation and next steps, executive views, alerts, configurable detection rules, and PDF reporting.</p></article>
+          </div>
+        </section>
+
+        <section class="case-section reveal">
+          <div class="case-section-heading"><span class="article-label">04 / Product surface</span><h2>A workspace for different investigation modes.</h2></div>
+          <div class="case-section-body"><p>The frontend separates overview, investigation, live monitoring, case management, executive reporting, rules, and settings so analysts can move between immediate signal review and deeper, persistent work without losing context.</p><ul class="principle-list"><li>Authentication and API keys support multi-user access patterns.</li><li>Uploaded Apache/Nginx-style logs and real-time WebSocket ingestion share a common investigation model.</li><li>GeoIP enrichment adds useful location context without replacing primary event evidence.</li><li>Alerting and rule configuration keep detection behavior visible and adjustable.</li></ul></div>
+        </section>
+
+        <section class="case-section reveal">
+          <div class="case-section-heading"><span class="article-label">05 / Technology</span><h2>Built for persistent security operations.</h2></div>
+          <div class="tech-grid">
+            <article class="tech-group"><h3>Backend</h3><p>FastAPI · Authentication · API keys · WebSockets</p></article>
+            <article class="tech-group"><h3>Frontend</h3><p>Next.js · Analyst workflows · Live monitor · Executive views</p></article>
+            <article class="tech-group"><h3>Persistence</h3><p>PostgreSQL · Cases · Sessions · Investigation history</p></article>
+            <article class="tech-group"><h3>Analysis</h3><p>Parsing · Detection rules · Campaign correlation · GeoIP · AI context</p></article>
+          </div>
+        </section>
+
+        <aside class="takeaway reveal"><span class="article-label">Key takeaway</span><h2>The useful unit is the investigation, not the alert.</h2><p>SecOps AI organizes parsing, detection, correlation, risk, AI context, and reporting around a persistent analyst workflow that keeps evidence connected.</p></aside>
+      </article>
+
+      <nav class="project-navigation" aria-label="Project navigation"><a href="codeguardian-ai.html"><span>← Previous project</span><strong>CodeGuardian AI</strong></a><a href="ai-brain.html"><strong>AI Brain</strong><span>Next project →</span></a><div class="back-to-work"><a class="text-link" href="../index.html#projects">Back to selected work <span aria-hidden="true">↑</span></a></div></nav>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-layout"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">ZN</span><span>Zain Nadeem</span></a><p>© <span data-current-year>2026</span> Zain Nadeem</p><a class="text-link" href="../index.html#projects">Selected work <span aria-hidden="true">→</span></a></div></footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

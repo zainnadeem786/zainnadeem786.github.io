@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Zain Nadeem — Software Engineer and Security Researcher</title>
+  <desc id="desc">A restrained dark social card for Zain Nadeem's engineering portfolio.</desc>
+  <defs>
+    <linearGradient id="background" x1="70" y1="32" x2="1130" y2="610" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17241c"/>
+      <stop offset="0.55" stop-color="#101713"/>
+      <stop offset="1" stop-color="#0b110e"/>
+    </linearGradient>
+    <radialGradient id="wash" cx="0" cy="0" r="1" gradientTransform="translate(1070 70) rotate(142) scale(420 300)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#73b893" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#73b893" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M72 0H0V72" fill="none" stroke="#dce7ed" stroke-opacity=".025"/></pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <rect width="1200" height="630" fill="url(#wash)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect x="38" y="38" width="1124" height="554" rx="22" fill="none" stroke="#b7c9d8" stroke-opacity=".14"/>
+
+  <g transform="translate(82 78)">
+    <rect width="72" height="72" rx="17" fill="#151f19" stroke="#73b893" stroke-opacity=".42"/>
+    <text x="36" y="45" fill="#73b893" font-family="Consolas, monospace" font-size="20" font-weight="700" text-anchor="middle">ZN</text>
+  </g>
+
+  <g transform="translate(82 242)">
+    <text fill="#eef2f4" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="-3">Zain Nadeem</text>
+    <text y="72" fill="#b2bdc7" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="31" font-weight="500">Software Engineer &amp; Security Researcher</text>
+    <line x1="0" y1="117" x2="1036" y2="117" stroke="#b7c9d8" stroke-opacity=".14"/>
+    <text y="166" fill="#73b893" font-family="Consolas, monospace" font-size="20" font-weight="700" letter-spacing="2">AI SYSTEMS  •  SECURITY RESEARCH  •  OPEN SOURCE</text>
+  </g>
+
+  <g transform="translate(82 548)">
+    <circle cx="6" cy="-6" r="6" fill="#73b893"/>
+    <text x="26" fill="#788693" font-family="Consolas, monospace" font-size="18">zainnadeem786.github.io</text>
+  </g>
+</svg>
