@@ -20,7 +20,7 @@
   const applyTheme = (theme, persist = false) => {
     root.dataset.theme = theme;
     themeButton?.setAttribute("aria-label", `Switch to ${theme === "dark" ? "light" : "dark"} mode`);
-    themeColor?.setAttribute("content", theme === "dark" ? "#101713" : "#f5f7f4");
+    themeColor?.setAttribute("content", theme === "dark" ? "#101713" : "#f4efe5");
 
     if (persist) {
       try {
