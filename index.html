@@ -5,7 +5,7 @@
   <script>(()=>{try{const s=localStorage.getItem("theme");document.documentElement.dataset.theme=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zain Nadeem | Software Engineer &amp; Security Researcher</title>
-  <meta name="description" content="Portfolio of Zain Nadeem, a software engineer and security researcher building backend systems, local AI products, security tooling, and open-source software.">
+  <meta name="description" content="Zain Nadeem is a software engineer, security researcher, and open-source contributor building Python/Django backends, local AI systems, and security tooling.">
   <meta name="author" content="Zain Nadeem">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#f4efe5" data-theme-color>
@@ -20,6 +20,9 @@
   <meta property="og:description" content="Backend systems, local AI, security research, and open-source engineering by Zain Nadeem.">
   <meta property="og:url" content="https://zainnadeem786.github.io/">
   <meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg">
+  <meta property="og:image:type" content="image/svg+xml">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -33,23 +36,42 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Zain Nadeem",
-    "url": "https://zainnadeem786.github.io/",
-    "email": "mailto:zainnadeemzainnadeem80@gmail.com",
-    "telephone": "+923221872257",
-    "jobTitle": "Software Engineer & Security Researcher",
-    "sameAs": [
-      "https://github.com/zainnadeem786",
-      "https://www.linkedin.com/in/zain-nadeem786/"
-    ],
-    "knowsAbout": [
-      "Software Engineering",
-      "Backend Systems",
-      "Artificial Intelligence",
-      "Application Security",
-      "Vulnerability Research",
-      "Open Source Software"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://zainnadeem786.github.io/#person",
+        "name": "Zain Nadeem",
+        "url": "https://zainnadeem786.github.io/",
+        "jobTitle": [
+          "Software Engineer",
+          "Security Researcher"
+        ],
+        "sameAs": [
+          "https://github.com/zainnadeem786",
+          "https://www.linkedin.com/in/zain-nadeem786/"
+        ],
+        "knowsAbout": [
+          "Python",
+          "Django",
+          "Backend Engineering",
+          "Software Engineering",
+          "Cybersecurity",
+          "Security Research",
+          "Open Source Software",
+          "Local AI"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://zainnadeem786.github.io/#website",
+        "url": "https://zainnadeem786.github.io/",
+        "name": "Zain Nadeem",
+        "description": "The engineering portfolio of Zain Nadeem, a software engineer, security researcher, and open-source contributor.",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://zainnadeem786.github.io/#person"
+        }
+      }
     ]
   }
   </script>
@@ -213,18 +235,18 @@
         <div class="disclosure-list reveal-group">
           <article class="disclosure-record reveal">
             <div><span class="record-project">Django REST Framework</span><h3>CVE-2026-73228</h3><p class="disclosure-title">Potential bypass of Django <code>DATA_UPLOAD_MAX_MEMORY_SIZE</code> when parsing oversized JSON and urlencoded request bodies via DRF <code>request.data</code></p><p class="record-id">GHSA-2m8g-3cmr-wg3w</p></div>
-            <div class="record-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published</span></div>
-            <a class="arrow-link" href="https://github.com/encode/django-rest-framework/security/advisories/GHSA-2m8g-3cmr-wg3w" target="_blank" rel="noopener noreferrer">View official advisory <span aria-hidden="true">↗</span></a>
+            <div class="record-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published · Credited reporter</span></div>
+            <a class="arrow-link" href="https://github.com/encode/django-rest-framework/security/advisories/GHSA-2m8g-3cmr-wg3w" target="_blank" rel="noopener noreferrer" aria-label="View the official advisory for CVE-2026-73228">View official advisory <span aria-hidden="true">↗</span></a>
           </article>
           <article class="disclosure-record reveal">
             <div><span class="record-project">Django REST Framework</span><h3>CVE-2026-73229</h3><p class="disclosure-title">AdminRenderer may disclose GET-protected data when rendering invalid write requests</p><p class="record-id">GHSA-g47c-3xmw-q6m2</p></div>
-            <div class="record-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published</span></div>
-            <a class="arrow-link" href="https://github.com/encode/django-rest-framework/security/advisories/GHSA-g47c-3xmw-q6m2" target="_blank" rel="noopener noreferrer">View official advisory <span aria-hidden="true">↗</span></a>
+            <div class="record-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published · Credited reporter</span></div>
+            <a class="arrow-link" href="https://github.com/encode/django-rest-framework/security/advisories/GHSA-g47c-3xmw-q6m2" target="_blank" rel="noopener noreferrer" aria-label="View the official advisory for CVE-2026-73229">View official advisory <span aria-hidden="true">↗</span></a>
           </article>
           <article class="disclosure-record reveal">
             <div><span class="record-project">CyberChef</span><h3>CVE-2026-72912</h3><p class="disclosure-title">CyberChef’s pretty-recipe parser vulnerable to client-side ReDoS / CPU exhaustion when parsing a malformed <code>#recipe=</code> URL</p><p class="record-id">GHSA-w74r-jxjh-gwr6</p></div>
-            <div class="record-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published</span></div>
-            <a class="arrow-link" href="https://github.com/gchq/CyberChef/security/advisories/GHSA-w74r-jxjh-gwr6" target="_blank" rel="noopener noreferrer">View official advisory <span aria-hidden="true">↗</span></a>
+            <div class="record-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published · Credited reporter</span></div>
+            <a class="arrow-link" href="https://github.com/gchq/CyberChef/security/advisories/GHSA-w74r-jxjh-gwr6" target="_blank" rel="noopener noreferrer" aria-label="View the official advisory for CVE-2026-72912">View official advisory <span aria-hidden="true">↗</span></a>
           </article>
         </div>
       </div>
@@ -239,10 +261,10 @@
         <ul class="contribution-list oss-preview-list reveal-group" aria-label="Selected open-source contributions">
           <li class="preview-contribution reveal"><span>01</span><div><strong>CPython</strong><small>Selected merged bug fixes</small></div><a class="arrow-link" href="open-source.html#cpython">View contributions <span aria-hidden="true">→</span></a></li>
           <li class="preview-contribution reveal"><span>02</span><div><strong>Django REST Framework</strong><small>Framework fixes &amp; regression work</small></div><a class="arrow-link" href="open-source.html#django-rest-framework">View contributions <span aria-hidden="true">→</span></a></li>
-          <li class="preview-contribution reveal"><span>03</span><div><strong>CyberChef</strong><small>Multiple merged bug fixes</small></div><a class="arrow-link" href="open-source.html#cyberchef">View contributions <span aria-hidden="true">→</span></a></li>
+          <li class="preview-contribution reveal"><span>03</span><div><strong>CyberChef</strong><small>Bug fixes &amp; build security</small></div><a class="arrow-link" href="open-source.html#cyberchef">View contributions <span aria-hidden="true">→</span></a></li>
           <li class="preview-contribution reveal"><span>04</span><div><strong>Celery</strong><small>Merged bug fix</small></div><a class="arrow-link" href="open-source.html#celery">View contribution <span aria-hidden="true">→</span></a></li>
           <li class="preview-contribution reveal"><span>05</span><div><strong>Visual Studio Code</strong><small>Selected merged bug fixes</small></div><a class="arrow-link" href="open-source.html#visual-studio-code">View contributions <span aria-hidden="true">→</span></a></li>
-          <li class="preview-contribution reveal"><span>06</span><div><strong>OWASP APTS</strong><small>Merged bug fix</small></div><a class="arrow-link" href="open-source.html#owasp-apts">View contribution <span aria-hidden="true">→</span></a></li>
+          <li class="preview-contribution reveal"><span>06</span><div><strong>OWASP APTS</strong><small>Merged CI engineering contribution</small></div><a class="arrow-link" href="open-source.html#owasp-apts">View contribution <span aria-hidden="true">→</span></a></li>
         </ul>
         <a class="arrow-link contribution-all-link reveal" href="open-source.html">View all contributions <span aria-hidden="true">→</span></a>
       </div>

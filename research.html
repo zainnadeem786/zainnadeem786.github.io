@@ -5,16 +5,80 @@
   <script>(()=>{try{const s=localStorage.getItem("theme");document.documentElement.dataset.theme=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Security Research &amp; CVEs | Zain Nadeem</title>
-  <meta name="description" content="Verified public security advisories associated with Zain Nadeem's responsible vulnerability research, with direct links to authoritative project records.">
+  <meta name="description" content="Security research by Zain Nadeem, including verified CVE advisories affecting Django REST Framework and CyberChef, with links to official records.">
   <meta name="author" content="Zain Nadeem">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#f4efe5" data-theme-color>
   <link rel="canonical" href="https://zainnadeem786.github.io/research.html">
   <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
-  <meta property="og:type" content="website"><meta property="og:site_name" content="Zain Nadeem"><meta property="og:title" content="Security Research &amp; CVEs | Zain Nadeem"><meta property="og:description" content="Verified public advisories with direct links to official project records."><meta property="og:url" content="https://zainnadeem786.github.io/research.html"><meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg"><meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Security Research &amp; CVEs | Zain Nadeem"><meta name="twitter:description" content="Verified public security advisories and authoritative project records."><meta name="twitter:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="Zain Nadeem"><meta property="og:title" content="Security Research &amp; CVEs | Zain Nadeem"><meta property="og:description" content="Verified CVE research affecting Django REST Framework and CyberChef, with authoritative advisory links."><meta property="og:url" content="https://zainnadeem786.github.io/research.html"><meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg"><meta property="og:image:type" content="image/svg+xml"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Security Research &amp; CVEs | Zain Nadeem"><meta name="twitter:description" content="Verified CVE research affecting Django REST Framework and CyberChef, with authoritative advisory links."><meta name="twitter:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg"><meta name="twitter:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
   <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://zainnadeem786.github.io/research.html#webpage",
+        "url": "https://zainnadeem786.github.io/research.html",
+        "name": "Security Research & CVEs | Zain Nadeem",
+        "description": "Verified CVE research affecting Django REST Framework and CyberChef, with authoritative advisory links.",
+        "inLanguage": "en",
+        "isPartOf": { "@id": "https://zainnadeem786.github.io/#website" },
+        "about": { "@id": "https://zainnadeem786.github.io/#person" },
+        "breadcrumb": { "@id": "https://zainnadeem786.github.io/research.html#breadcrumb" },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "Potential bypass of Django DATA_UPLOAD_MAX_MEMORY_SIZE when parsing oversized JSON and urlencoded request bodies via DRF request.data",
+                "identifier": ["CVE-2026-73228", "GHSA-2m8g-3cmr-wg3w"],
+                "url": "https://github.com/encode/django-rest-framework/security/advisories/GHSA-2m8g-3cmr-wg3w",
+                "contributor": { "@id": "https://zainnadeem786.github.io/#person" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "AdminRenderer may disclose GET-protected data when rendering invalid write requests",
+                "identifier": ["CVE-2026-73229", "GHSA-g47c-3xmw-q6m2"],
+                "url": "https://github.com/encode/django-rest-framework/security/advisories/GHSA-g47c-3xmw-q6m2",
+                "contributor": { "@id": "https://zainnadeem786.github.io/#person" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "CyberChef's pretty-recipe parser vulnerable to client-side ReDoS / CPU exhaustion when parsing a malformed #recipe= URL",
+                "identifier": ["CVE-2026-72912", "GHSA-w74r-jxjh-gwr6"],
+                "url": "https://github.com/gchq/CyberChef/security/advisories/GHSA-w74r-jxjh-gwr6",
+                "contributor": { "@id": "https://zainnadeem786.github.io/#person" }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://zainnadeem786.github.io/research.html#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zainnadeem786.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Security Research", "item": "https://zainnadeem786.github.io/research.html" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="article-page">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -26,7 +90,7 @@
   <main id="main-content">
     <header class="page-hero"><div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Security Research</span></nav>
-      <div class="reveal"><p class="case-kicker">Responsible disclosure / Public record</p><h1>Security Research</h1><p class="page-intro">Verified public advisories documented with direct links to official project records. Only supplied publication metadata is presented.</p></div>
+      <div class="reveal"><p class="case-kicker">Responsible disclosure / Public record</p><h1>Security Research</h1><p class="page-intro">Verified public advisories reported by Zain Nadeem and documented with direct links to official project records. Attribution follows the reporter credit published on each advisory.</p></div>
     </div></header>
 
     <div class="article-shell">
@@ -37,19 +101,19 @@
       </aside>
       <div class="research-index reveal-group">
         <article class="research-card reveal">
-          <div><span class="record-project">Django REST Framework</span><h2>CVE-2026-73228</h2><h3 class="advisory-title">Potential bypass of Django <code>DATA_UPLOAD_MAX_MEMORY_SIZE</code> when parsing oversized JSON and urlencoded request bodies via DRF <code>request.data</code></h3><p class="research-card-id">GHSA-2m8g-3cmr-wg3w</p></div>
-          <div class="research-card-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published</span></div>
-          <a class="arrow-link" href="https://github.com/encode/django-rest-framework/security/advisories/GHSA-2m8g-3cmr-wg3w" target="_blank" rel="noopener noreferrer">View official advisory <span aria-hidden="true">↗</span></a>
+          <div><span class="record-project">Django REST Framework</span><h2>CVE-2026-73228</h2><h3 class="advisory-title">Potential bypass of Django <code>DATA_UPLOAD_MAX_MEMORY_SIZE</code> when parsing oversized JSON and urlencoded request bodies via DRF <code>request.data</code></h3><p class="research-summary">DRF could parse oversized JSON and urlencoded request bodies through <code>request.data</code> without enforcing Django’s configured in-memory upload limit, weakening an application-level resource-consumption safeguard.</p><p class="research-card-id">GHSA-2m8g-3cmr-wg3w</p></div>
+          <div class="research-card-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published</span><span class="research-role">Credited reporter: Zain Nadeem</span></div>
+          <a class="arrow-link" href="https://github.com/encode/django-rest-framework/security/advisories/GHSA-2m8g-3cmr-wg3w" target="_blank" rel="noopener noreferrer" aria-label="View the official advisory for CVE-2026-73228">View official advisory <span aria-hidden="true">↗</span></a>
         </article>
         <article class="research-card reveal">
-          <div><span class="record-project">Django REST Framework</span><h2>CVE-2026-73229</h2><h3 class="advisory-title">AdminRenderer may disclose GET-protected data when rendering invalid write requests</h3><p class="research-card-id">GHSA-g47c-3xmw-q6m2</p></div>
-          <div class="research-card-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published</span></div>
-          <a class="arrow-link" href="https://github.com/encode/django-rest-framework/security/advisories/GHSA-g47c-3xmw-q6m2" target="_blank" rel="noopener noreferrer">View official advisory <span aria-hidden="true">↗</span></a>
+          <div><span class="record-project">Django REST Framework</span><h2>CVE-2026-73229</h2><h3 class="advisory-title">AdminRenderer may disclose GET-protected data when rendering invalid write requests</h3><p class="research-summary">When rendering an invalid write request, AdminRenderer could invoke a view’s GET handler and include representation data that the same requester would be denied through a direct GET request.</p><p class="research-card-id">GHSA-g47c-3xmw-q6m2</p></div>
+          <div class="research-card-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published</span><span class="research-role">Credited reporter: Zain Nadeem</span></div>
+          <a class="arrow-link" href="https://github.com/encode/django-rest-framework/security/advisories/GHSA-g47c-3xmw-q6m2" target="_blank" rel="noopener noreferrer" aria-label="View the official advisory for CVE-2026-73229">View official advisory <span aria-hidden="true">↗</span></a>
         </article>
         <article class="research-card reveal">
-          <div><span class="record-project">CyberChef</span><h2>CVE-2026-72912</h2><h3 class="advisory-title">CyberChef’s pretty-recipe parser vulnerable to client-side ReDoS / CPU exhaustion when parsing a malformed <code>#recipe=</code> URL</h3><p class="research-card-id">GHSA-w74r-jxjh-gwr6</p></div>
-          <div class="research-card-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published</span></div>
-          <a class="arrow-link" href="https://github.com/gchq/CyberChef/security/advisories/GHSA-w74r-jxjh-gwr6" target="_blank" rel="noopener noreferrer">View official advisory <span aria-hidden="true">↗</span></a>
+          <div><span class="record-project">CyberChef</span><h2>CVE-2026-72912</h2><h3 class="advisory-title">CyberChef’s pretty-recipe parser vulnerable to client-side ReDoS / CPU exhaustion when parsing a malformed <code>#recipe=</code> URL</h3><p class="research-summary">A malformed pretty-recipe URL fragment could trigger inefficient regular-expression processing in the client-side parser, causing prolonged CPU usage and making the page unresponsive.</p><p class="research-card-id">GHSA-w74r-jxjh-gwr6</p></div>
+          <div class="research-card-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published</span><span class="research-role">Credited reporter: Zain Nadeem</span></div>
+          <a class="arrow-link" href="https://github.com/gchq/CyberChef/security/advisories/GHSA-w74r-jxjh-gwr6" target="_blank" rel="noopener noreferrer" aria-label="View the official advisory for CVE-2026-72912">View official advisory <span aria-hidden="true">↗</span></a>
         </article>
       </div>
       <p class="back-to-work"><a class="text-link" href="index.html#research">Back to research overview <span aria-hidden="true">←</span></a></p>

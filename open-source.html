@@ -5,7 +5,7 @@
   <script>(()=>{try{const s=localStorage.getItem("theme");document.documentElement.dataset.theme=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Open Source Contributions | Zain Nadeem</title>
-  <meta name="description" content="Verified open-source bug fixes and issue research by Zain Nadeem across CPython, Django REST Framework, CyberChef, Celery, Visual Studio Code, OWASP APTS, and Nuclei.">
+  <meta name="description" content="Verified open-source bug fixes and issue research by Zain Nadeem across Python, web frameworks, developer tooling, and security projects.">
   <meta name="author" content="Zain Nadeem">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#f4efe5" data-theme-color>
@@ -18,12 +18,54 @@
   <meta property="og:description" content="Selected merged bug fixes and technical contributions across established open-source projects.">
   <meta property="og:url" content="https://zainnadeem786.github.io/open-source.html">
   <meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg">
+  <meta property="og:image:type" content="image/svg+xml">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Open Source Contributions | Zain Nadeem">
   <meta name="twitter:description" content="Selected merged bug fixes and technical contributions across established open-source projects.">
   <meta name="twitter:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg">
+  <meta name="twitter:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
   <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://zainnadeem786.github.io/open-source.html#webpage",
+        "url": "https://zainnadeem786.github.io/open-source.html",
+        "name": "Open Source Contributions | Zain Nadeem",
+        "description": "Verified open-source bug fixes, engineering contributions, and issue research by Zain Nadeem.",
+        "inLanguage": "en",
+        "isPartOf": { "@id": "https://zainnadeem786.github.io/#website" },
+        "about": { "@id": "https://zainnadeem786.github.io/#person" },
+        "breadcrumb": { "@id": "https://zainnadeem786.github.io/open-source.html#breadcrumb" },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "CPython contributions", "url": "https://zainnadeem786.github.io/open-source.html#cpython" },
+            { "@type": "ListItem", "position": 2, "name": "Django REST Framework contributions", "url": "https://zainnadeem786.github.io/open-source.html#django-rest-framework" },
+            { "@type": "ListItem", "position": 3, "name": "CyberChef contributions", "url": "https://zainnadeem786.github.io/open-source.html#cyberchef" },
+            { "@type": "ListItem", "position": 4, "name": "Celery contribution", "url": "https://zainnadeem786.github.io/open-source.html#celery" },
+            { "@type": "ListItem", "position": 5, "name": "Visual Studio Code contributions", "url": "https://zainnadeem786.github.io/open-source.html#visual-studio-code" },
+            { "@type": "ListItem", "position": 6, "name": "OWASP APTS contribution", "url": "https://zainnadeem786.github.io/open-source.html#owasp-apts" },
+            { "@type": "ListItem", "position": 7, "name": "Nuclei issue research", "url": "https://zainnadeem786.github.io/open-source.html#nuclei" }
+          ]
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://zainnadeem786.github.io/open-source.html#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zainnadeem786.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Open Source", "item": "https://zainnadeem786.github.io/open-source.html" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="article-page open-source-page">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -54,7 +96,7 @@
         <div class="reveal">
           <p class="case-kicker">Selected public contributions</p>
           <h1>Engineering in public.</h1>
-          <p class="page-intro">Selected merged bug fixes and technical contributions across Python, web frameworks, developer tooling, security tooling, and open-source infrastructure.</p>
+          <p class="page-intro">Selected merged bug fixes, engineering contributions, and issue research by Zain Nadeem across Python, web frameworks, developer tooling, security tooling, and open-source infrastructure.</p>
         </div>
       </div>
     </header>
@@ -66,53 +108,53 @@
         <section class="oss-group reveal" id="cpython" aria-labelledby="cpython-title">
           <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">Py</span><div><h2 id="cpython-title">CPython</h2><p>Python runtime / standard library</p></div></div><span class="oss-group-kind">Bug fixes</span></header>
           <ul class="oss-entries">
-            <li class="oss-entry"><div><span class="oss-reference">PR #152906</span><strong>gh-150880: Normalize Windows scandir wildcard paths</strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/152906" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 152906 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
-            <li class="oss-entry"><div><span class="oss-reference">PR #152471</span><strong>gh-152356: Fix Windows blocking sampling after target process exit</strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/152471" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 152471 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
-            <li class="oss-entry"><div><span class="oss-reference">PR #152223</span><strong>gh-152099: Raise SendfileNotAvailableError for fallback-only transports</strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/152223" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 152223 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
-            <li class="oss-entry"><div><span class="oss-reference">PR #151779</span><strong>gh-151763: Fix NULL deref in <code>os._path_normpath()</code></strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/151779" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 151779 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #152906</span><strong>gh-150880: Normalize Windows scandir wildcard paths</strong><p class="oss-summary">Normalizes Windows enumeration paths before appending wildcards so trailing-space paths behave consistently across file-system APIs.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/152906" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 152906 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #152471</span><strong>gh-152356: Fix Windows blocking sampling after target process exit</strong><p class="oss-summary">Makes blocking profiler sampling terminate cleanly when its Windows target exits and preserves a replayable profile.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/152471" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 152471 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #152223</span><strong>gh-152099: Raise SendfileNotAvailableError for fallback-only transports</strong><p class="oss-summary">Returns the public asyncio exception consistently when native sendfile is unavailable and fallback behavior is disabled.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/152223" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 152223 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #151779</span><strong>gh-151763: Fix NULL deref in <code>os._path_normpath()</code></strong><p class="oss-summary">Guards an allocation-failure path so bytes-path normalization raises <code>MemoryError</code> instead of dereferencing a null object.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/151779" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 151779 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
           </ul>
         </section>
 
         <section class="oss-group reveal" id="django-rest-framework" aria-labelledby="drf-title">
           <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">DR</span><div><h2 id="drf-title">Django REST Framework</h2><p>Web framework / APIs</p></div></div><span class="oss-group-kind">Bug fixes</span></header>
           <ul class="oss-entries">
-            <li class="oss-entry"><div><span class="oss-reference">PR #9981</span><strong>Raise clear error for unsupported unique-together list updates</strong></div><span class="oss-category">Bug Fix / Regression</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/encode/django-rest-framework/pull/9981" target="_blank" rel="noopener noreferrer" aria-label="View Django REST Framework PR 9981 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
-            <li class="oss-entry"><div><span class="oss-reference">PR #9977</span><strong>Fix OpenAPI schema for zero numeric bounds on ListField children</strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/encode/django-rest-framework/pull/9977" target="_blank" rel="noopener noreferrer" aria-label="View Django REST Framework PR 9977 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #9981</span><strong>Raise clear error for unsupported unique-together list updates</strong><p class="oss-summary">Replaces an internal queryset attribute failure with an explicit error for an unsupported multiple-update validation path.</p></div><span class="oss-category">Bug Fix / Regression</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/encode/django-rest-framework/pull/9981" target="_blank" rel="noopener noreferrer" aria-label="View Django REST Framework PR 9981 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #9977</span><strong>Fix OpenAPI schema for zero numeric bounds on ListField children</strong><p class="oss-summary">Preserves valid zero-valued minimum and maximum constraints when mapping list child fields into OpenAPI schemas.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/encode/django-rest-framework/pull/9977" target="_blank" rel="noopener noreferrer" aria-label="View Django REST Framework PR 9977 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
           </ul>
           <p class="oss-related">Security-related upstream remediation is documented separately in the <a href="research.html">Security Research index <span aria-hidden="true">→</span></a>.</p>
         </section>
 
         <section class="oss-group reveal" id="cyberchef" aria-labelledby="cyberchef-title">
-          <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">CC</span><div><h2 id="cyberchef-title">CyberChef</h2><p>Security tooling</p></div></div><span class="oss-group-kind">Bug fixes</span></header>
+          <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">CC</span><div><h2 id="cyberchef-title">CyberChef</h2><p>Security tooling</p></div></div><span class="oss-group-kind">Bug fixes &amp; build security</span></header>
           <ul class="oss-entries">
-            <li class="oss-entry"><div><span class="oss-reference">PR #2682</span><strong>Add npm allowScripts policy for npm v12</strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2682" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2682 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
-            <li class="oss-entry"><div><span class="oss-reference">PR #2615</span><strong>Handle invalid bcrypt salt errors in Bcrypt compare</strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2615" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2615 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
-            <li class="oss-entry"><div><span class="oss-reference">PR #2612</span><strong>Handle malformed image parser errors in View Bit Plane</strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2612" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2612 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
-            <li class="oss-entry"><div><span class="oss-reference">PR #2589</span><strong>Fix stale presenter after expected operation errors</strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2589" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2589 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #2682</span><strong>Add npm allowScripts policy for npm v12</strong><p class="oss-summary">Adds an explicit npm v12 install-script policy that permits required tooling while denying unnecessary dependency scripts.</p></div><span class="oss-category">Build Security / Compatibility</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2682" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2682 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #2615</span><strong>Handle invalid bcrypt salt errors in Bcrypt compare</strong><p class="oss-summary">Converts malformed bcrypt validation failures into CyberChef’s expected user-facing operation error path.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2615" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2615 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #2612</span><strong>Handle malformed image parser errors in View Bit Plane</strong><p class="oss-summary">Handles decoder failures from malformed image input as clear operation errors while preserving valid image behavior.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2612" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2612 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #2589</span><strong>Fix stale presenter after expected operation errors</strong><p class="oss-summary">Clears stale presentation state on expected error paths so an earlier operation cannot alter later error output.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2589" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2589 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
           </ul>
         </section>
 
         <section class="oss-group reveal" id="celery" aria-labelledby="celery-title">
           <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">Ce</span><div><h2 id="celery-title">Celery</h2><p>Distributed task processing</p></div></div><span class="oss-group-kind">Bug fix</span></header>
-          <ul class="oss-entries"><li class="oss-entry"><div><span class="oss-reference">PR #10363</span><strong>Fix pidbox consumer cleanup during reset cycles</strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/celery/celery/pull/10363" target="_blank" rel="noopener noreferrer" aria-label="View Celery PR 10363 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li></ul>
+          <ul class="oss-entries"><li class="oss-entry"><div><span class="oss-reference">PR #10363</span><strong>Fix pidbox consumer cleanup during reset cycles</strong><p class="oss-summary">Cancels and clears existing pidbox consumers before recreation to prevent stale transport resources during repeated worker resets.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/celery/celery/pull/10363" target="_blank" rel="noopener noreferrer" aria-label="View Celery PR 10363 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li></ul>
         </section>
 
         <section class="oss-group reveal" id="visual-studio-code" aria-labelledby="vscode-title">
           <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">VS</span><div><h2 id="vscode-title">Visual Studio Code</h2><p>Developer tooling</p></div></div><span class="oss-group-kind">Bug fixes</span></header>
           <ul class="oss-entries">
-            <li class="oss-entry"><div><span class="oss-reference">PR #331753</span><strong>Fix PowerShell quoting for runInTerminal environment values</strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/microsoft/vscode/pull/331753" target="_blank" rel="noopener noreferrer" aria-label="View Visual Studio Code PR 331753 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
-            <li class="oss-entry"><div><span class="oss-reference">PR #328626</span><strong>Await Workspace Trust transition completion in <code>setUrisTrust()</code></strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/microsoft/vscode/pull/328626" target="_blank" rel="noopener noreferrer" aria-label="View Visual Studio Code PR 328626 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #331753</span><strong>Fix PowerShell quoting for runInTerminal environment values</strong><p class="oss-summary">Escapes embedded single quotes in PowerShell environment assignments without changing literal backslashes or other shell behavior.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/microsoft/vscode/pull/331753" target="_blank" rel="noopener noreferrer" aria-label="View Visual Studio Code PR 331753 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #328626</span><strong>Await Workspace Trust transition completion in <code>setUrisTrust()</code></strong><p class="oss-summary">Ensures callers resume only after asynchronous Workspace Trust participants finish and the trust-change event is emitted.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/microsoft/vscode/pull/328626" target="_blank" rel="noopener noreferrer" aria-label="View Visual Studio Code PR 328626 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
           </ul>
         </section>
 
         <section class="oss-group reveal" id="owasp-apts" aria-labelledby="owasp-title">
-          <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">OW</span><div><h2 id="owasp-title">OWASP APTS</h2><p>Application security tooling</p></div></div><span class="oss-group-kind">Bug fix</span></header>
-          <ul class="oss-entries"><li class="oss-entry"><div><span class="oss-reference">PR #41</span><strong>feat: add CI pipeline for automated sanity checks</strong></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/OWASP/APTS/pull/41" target="_blank" rel="noopener noreferrer" aria-label="View OWASP APTS PR 41 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li></ul>
+          <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">OW</span><div><h2 id="owasp-title">OWASP APTS</h2><p>Application security tooling</p></div></div><span class="oss-group-kind">Engineering infrastructure</span></header>
+          <ul class="oss-entries"><li class="oss-entry"><div><span class="oss-reference">PR #41</span><strong>feat: add CI pipeline for automated sanity checks</strong><p class="oss-summary">Introduces lightweight automated checks for Python syntax, JSON, links, generated artifacts, and temporary files.</p></div><span class="oss-category">CI / Engineering Infrastructure</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/OWASP/APTS/pull/41" target="_blank" rel="noopener noreferrer" aria-label="View OWASP APTS PR 41 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li></ul>
         </section>
 
         <section class="oss-group reveal" id="nuclei" aria-labelledby="nuclei-title">
           <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">Nu</span><div><h2 id="nuclei-title">Nuclei</h2><p>Security automation / issue research</p></div></div><span class="oss-group-kind">Issue research</span></header>
-          <ul class="oss-entries"><li class="oss-entry"><div><span class="oss-reference">Issue #7524</span><strong>[BUG] Raw HTTP parser panics when request body consists of a single LF character</strong></div><span class="oss-category">Bug Report / Issue Research</span><div class="oss-entry-action"><span class="oss-status oss-status-closed">Closed</span><a href="https://github.com/projectdiscovery/nuclei/issues/7524" target="_blank" rel="noopener noreferrer" aria-label="View Nuclei issue 7524 on GitHub">View issue on GitHub <span aria-hidden="true">↗</span></a></div></li></ul>
+          <ul class="oss-entries"><li class="oss-entry"><div><span class="oss-reference">Issue #7524</span><strong>[BUG] Raw HTTP parser panics when request body consists of a single LF character</strong><p class="oss-summary">Documents a reproducible parser panic caused by a single-line-feed request body and identifies the empty-slice access behind it.</p></div><span class="oss-category">Bug Report / Issue Research</span><div class="oss-entry-action"><span class="oss-status oss-status-closed">Closed</span><a href="https://github.com/projectdiscovery/nuclei/issues/7524" target="_blank" rel="noopener noreferrer" aria-label="View Nuclei issue 7524 on GitHub">View issue on GitHub <span aria-hidden="true">↗</span></a></div></li></ul>
         </section>
       </div>
 

@@ -1496,6 +1496,14 @@ p {
   overflow-wrap: anywhere;
 }
 
+.oss-summary {
+  max-width: 68ch;
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.58;
+}
+
 .oss-entry code,
 .advisory-title code,
 .disclosure-title code,
@@ -2271,11 +2279,28 @@ p {
   font-size: 0.72rem;
 }
 
+.research-summary {
+  max-width: 70ch;
+  margin: 0.75rem 0 0.8rem;
+  color: var(--text-soft);
+  font-size: 0.84rem;
+  line-height: 1.62;
+}
+
 .research-card-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.65rem;
+}
+
+.research-role {
+  flex-basis: 100%;
+  color: var(--accent-strong);
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  font-weight: 700;
+  line-height: 1.45;
 }
 
 .evidence-note {
