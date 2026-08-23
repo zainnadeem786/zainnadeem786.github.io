@@ -1,0 +1,4 @@
+Contact: mailto:zainnadeemzainnadeem80@gmail.com
+Expires: 2027-08-23T23:59:59Z
+Preferred-Languages: en
+Canonical: https://zainnadeem786.github.io/.well-known/security.txt
