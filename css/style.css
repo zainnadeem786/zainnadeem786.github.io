@@ -1650,11 +1650,19 @@ p {
 .oss-breakdown-link {
   display: inline-flex;
   margin-top: 0.7rem;
+  padding: 0.38rem 0.55rem;
   align-items: center;
   gap: 0.25rem;
   color: var(--accent-strong);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--accent-soft) 72%, transparent);
   font-size: 0.7rem;
   font-weight: 750;
+  transition:
+    color var(--duration-fast) var(--ease),
+    border-color var(--duration-fast) var(--ease),
+    background-color var(--duration-fast) var(--ease);
 }
 
 .oss-breakdown-link span {
@@ -1663,6 +1671,11 @@ p {
 
 .oss-breakdown-link:hover span {
   transform: translateX(3px);
+}
+
+.oss-breakdown-link:hover {
+  border-color: color-mix(in srgb, var(--accent) 48%, var(--border));
+  background: var(--accent-soft);
 }
 
 .oss-entry code,
@@ -1983,10 +1996,11 @@ p {
 
 .project-inquiry-form {
   position: relative;
-  padding: clamp(1.1rem, 3vw, 1.6rem);
+  padding: clamp(1.2rem, 3vw, 1.85rem);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--surface) 94%, transparent), color-mix(in srgb, var(--surface-raised) 86%, transparent));
   box-shadow: var(--shadow-sm);
 }
 
@@ -2002,8 +2016,8 @@ p {
 }
 
 .inquiry-form-heading {
-  margin-bottom: 1.35rem;
-  padding-bottom: 1.1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.2rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -2021,25 +2035,26 @@ p {
 
 .inquiry-form-grid {
   display: grid;
-  gap: 0.9rem;
+  gap: 1.05rem 1rem;
 }
 
 .form-field {
   display: grid;
   min-width: 0;
-  gap: 0.4rem;
+  gap: 0.48rem;
 }
 
 .form-field > span {
-  color: var(--text-soft);
-  font-size: 0.72rem;
-  font-weight: 700;
+  color: var(--text);
+  font-size: 0.73rem;
+  font-weight: 720;
+  letter-spacing: 0.015em;
 }
 
 .form-field small {
   color: var(--muted);
-  font-size: 0.64rem;
-  font-weight: 500;
+  font-size: 0.63rem;
+  font-weight: 550;
 }
 
 .form-field input,
@@ -2047,25 +2062,30 @@ p {
 .form-field textarea {
   width: 100%;
   min-width: 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
   color: var(--text);
-  background: var(--surface);
+  background: color-mix(in srgb, var(--surface-raised) 50%, var(--surface));
   font: inherit;
-  font-size: 1rem;
-  transition: border-color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease);
+  font-size: 0.94rem;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 4%, transparent);
+  transition:
+    border-color var(--duration-fast) var(--ease),
+    background-color var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease);
 }
 
 .form-field input,
 .form-field select {
-  min-height: 2.9rem;
-  padding: 0.65rem 0.75rem;
+  min-height: 3.15rem;
+  padding: 0.7rem 0.9rem;
 }
 
 .form-field textarea {
-  min-height: 9rem;
-  padding: 0.75rem;
-  line-height: 1.55;
+  min-height: 10.5rem;
+  max-width: 100%;
+  padding: 0.85rem 0.9rem;
+  line-height: 1.62;
   resize: vertical;
 }
 
@@ -2081,7 +2101,8 @@ p {
 .form-field input:hover,
 .form-field select:hover,
 .form-field textarea:hover {
-  border-color: var(--border-strong);
+  border-color: color-mix(in srgb, var(--accent) 36%, var(--border-strong));
+  background: var(--surface-hover);
 }
 
 .form-field input:focus,
@@ -2089,7 +2110,10 @@ p {
 .form-field textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
+  background: var(--surface-hover);
+  box-shadow:
+    0 0 0 3px var(--accent-soft),
+    inset 0 1px 0 color-mix(in srgb, var(--text) 4%, transparent);
 }
 
 .inquiry-privacy,
@@ -2110,7 +2134,8 @@ p {
 }
 
 .inquiry-submit {
-  margin-top: 1.1rem;
+  min-width: 10.5rem;
+  margin-top: 1.25rem;
   cursor: pointer;
 }
 
@@ -2137,7 +2162,7 @@ p {
 }
 
 .success-dialog {
-  width: min(31rem, calc(100vw - 2rem));
+  width: min(43rem, calc(100vw - 2rem));
   max-width: none;
   max-height: calc(100dvh - 2rem);
   padding: 0;
@@ -2159,9 +2184,13 @@ p {
 
 .success-dialog-panel {
   position: relative;
+  display: grid;
   max-height: calc(100dvh - 2rem);
-  padding: clamp(1.5rem, 5vw, 2.25rem);
+  padding: clamp(1.5rem, 4vw, 2.1rem);
   overflow-y: auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto auto;
+  column-gap: clamp(1rem, 3vw, 1.5rem);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   background: linear-gradient(145deg, var(--panel-from), var(--panel-to));
@@ -2211,10 +2240,12 @@ p {
 
 .success-dialog-icon {
   display: grid;
-  width: 3.25rem;
-  height: 3.25rem;
-  margin-bottom: 1.25rem;
+  width: 3rem;
+  height: 3rem;
+  grid-column: 1;
+  grid-row: 1 / span 4;
   place-items: center;
+  align-self: start;
   color: var(--complete);
   border: 1px solid color-mix(in srgb, var(--complete) 32%, transparent);
   border-radius: 50%;
@@ -2231,6 +2262,8 @@ p {
 }
 
 .success-dialog-eyebrow {
+  grid-column: 2 / -1;
+  grid-row: 1;
   margin: 0 0 0.45rem;
   color: var(--complete);
   font-family: var(--font-mono);
@@ -2241,8 +2274,11 @@ p {
 }
 
 .success-dialog h3 {
+  grid-column: 2 / -1;
+  grid-row: 2;
   margin: 0;
-  font-size: clamp(1.65rem, 5vw, 2.05rem);
+  padding-right: 2.25rem;
+  font-size: clamp(1.55rem, 3vw, 1.9rem);
   line-height: 1.15;
 }
 
@@ -2251,20 +2287,66 @@ p {
 }
 
 #inquiry-success-description {
-  margin: 1rem 0 0;
+  grid-column: 2 / -1;
+  grid-row: 3;
+  margin: 0.8rem 0 0;
   color: var(--text-soft);
   line-height: 1.7;
 }
 
 .success-dialog-support {
-  margin: 0.65rem 0 0;
+  grid-column: 2;
+  grid-row: 4;
+  margin: 0.55rem 0 0;
   color: var(--muted);
   font-size: 0.88rem;
 }
 
 .success-dialog-done {
-  min-width: 7.5rem;
-  margin-top: 1.5rem;
+  min-width: 6.75rem;
+  margin: 0.75rem 0 0 1rem;
+  grid-column: 3;
+  grid-row: 4;
+  align-self: end;
+  justify-self: end;
+}
+
+@media (max-width: 30rem) {
+  .success-dialog {
+    width: min(calc(100% - 1rem), 27rem);
+    max-height: calc(100dvh - 1rem);
+  }
+
+  .success-dialog-panel {
+    max-height: calc(100dvh - 1rem);
+    padding: 1.35rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .success-dialog-icon,
+  .success-dialog-eyebrow,
+  .success-dialog h3,
+  #inquiry-success-description,
+  .success-dialog-support,
+  .success-dialog-done {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .success-dialog-icon {
+    margin-bottom: 1rem;
+  }
+
+  .success-dialog h3 {
+    padding-right: 2rem;
+  }
+
+  .success-dialog-done {
+    width: 100%;
+    margin: 1.25rem 0 0;
+    justify-self: stretch;
+  }
 }
 
 @keyframes success-backdrop-in {
