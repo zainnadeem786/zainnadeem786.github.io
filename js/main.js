@@ -170,6 +170,96 @@
     reducedMotionQuery.addListener(handleMotionChange);
   }
 
+  const inquiryForm = document.querySelector("[data-project-inquiry]");
+  const inquirySuccessDialog = document.querySelector("[data-inquiry-success-dialog]");
+
+  if (inquiryForm instanceof HTMLFormElement) {
+    const submitButton = inquiryForm.querySelector("button[type='submit']");
+    const submitLabel = inquiryForm.querySelector("[data-submit-label]");
+    const formStatus = inquiryForm.querySelector("[data-form-status]");
+    const dialogCloseButtons = inquirySuccessDialog?.querySelectorAll("[data-success-dialog-close]") ?? [];
+    const dialogDoneButton = inquirySuccessDialog?.querySelector(".success-dialog-done");
+    let isSubmitting = false;
+    let dialogReturnFocus = null;
+
+    const closeSuccessDialog = () => {
+      if (inquirySuccessDialog instanceof HTMLDialogElement && inquirySuccessDialog.open) {
+        inquirySuccessDialog.close();
+      }
+    };
+
+    const openSuccessDialog = () => {
+      if (!(inquirySuccessDialog instanceof HTMLDialogElement) || inquirySuccessDialog.open) return;
+
+      dialogReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : submitButton;
+      document.body.classList.add("success-dialog-open");
+      inquirySuccessDialog.showModal();
+      requestAnimationFrame(() => {
+        if (dialogDoneButton instanceof HTMLButtonElement) dialogDoneButton.focus({ preventScroll: true });
+      });
+    };
+
+    dialogCloseButtons.forEach((button) => button.addEventListener("click", closeSuccessDialog));
+
+    inquirySuccessDialog?.addEventListener("click", (event) => {
+      if (event.target === inquirySuccessDialog) closeSuccessDialog();
+    });
+
+    inquirySuccessDialog?.addEventListener("close", () => {
+      document.body.classList.remove("success-dialog-open");
+      const focusTarget = dialogReturnFocus?.isConnected ? dialogReturnFocus : submitButton;
+      dialogReturnFocus = null;
+      if (focusTarget instanceof HTMLElement) focusTarget.focus({ preventScroll: true });
+    });
+
+    inquiryForm.addEventListener("input", () => {
+      if (isSubmitting || !formStatus) return;
+      formStatus.textContent = "";
+      formStatus.removeAttribute("data-state");
+    });
+
+    inquiryForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (isSubmitting || !inquiryForm.reportValidity()) return;
+
+      isSubmitting = true;
+      inquiryForm.setAttribute("aria-busy", "true");
+      if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
+      if (submitLabel) submitLabel.textContent = "Sending…";
+      if (formStatus) {
+        formStatus.textContent = "Submitting your project inquiry…";
+        formStatus.removeAttribute("data-state");
+      }
+
+      try {
+        const response = await fetch(inquiryForm.action, {
+          method: "POST",
+          body: new FormData(inquiryForm),
+          headers: { Accept: "application/json" }
+        });
+
+        if (!response.ok) throw new Error("Form submission failed");
+
+        inquiryForm.reset();
+        if (formStatus) {
+          formStatus.textContent = "";
+          formStatus.removeAttribute("data-state");
+        }
+        openSuccessDialog();
+      } catch {
+        if (formStatus) {
+          formStatus.textContent = "Something went wrong and your inquiry could not be submitted. Please try again, or contact me directly by email.";
+          formStatus.setAttribute("data-state", "error");
+        }
+      } finally {
+        isSubmitting = false;
+        inquiryForm.removeAttribute("aria-busy");
+        if (submitButton instanceof HTMLButtonElement) submitButton.disabled = false;
+        if (submitLabel) submitLabel.textContent = "Send inquiry";
+      }
+    });
+  }
+
   document.querySelectorAll("[data-current-year]").forEach((element) => {
     element.textContent = String(new Date().getFullYear());
   });

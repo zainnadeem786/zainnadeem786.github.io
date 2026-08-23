@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>(()=>{try{const s=localStorage.getItem("theme");document.documentElement.dataset.theme=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preventing a Raw HTTP Parser Panic in Nuclei | Zain Nadeem</title>
+  <meta name="description" content="Technical case study of Nuclei PR #7525: tracing a single-LF request body to an empty-slice access, fixing both parser paths, and adding regression coverage.">
+  <meta name="author" content="Zain Nadeem">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#f4efe5" data-theme-color>
+  <link rel="canonical" href="https://zainnadeem786.github.io/open-source/nuclei-raw-http-parser-panic.html">
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta property="og:type" content="article"><meta property="og:site_name" content="Zain Nadeem"><meta property="og:title" content="Preventing a Raw HTTP Parser Panic in Nuclei"><meta property="og:description" content="How a single-LF request body exposed an empty-slice access in two Nuclei parser paths, and how the merged fix was regression-tested."><meta property="og:url" content="https://zainnadeem786.github.io/open-source/nuclei-raw-http-parser-panic.html"><meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg"><meta property="og:image:type" content="image/svg+xml"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Preventing a Raw HTTP Parser Panic in Nuclei"><meta name="twitter:description" content="Technical case study of the merged Nuclei parser reliability fix in PR #7525."><meta name="twitter:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg"><meta name="twitter:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://zainnadeem786.github.io/open-source/nuclei-raw-http-parser-panic.html#article",
+        "url": "https://zainnadeem786.github.io/open-source/nuclei-raw-http-parser-panic.html",
+        "mainEntityOfPage": "https://zainnadeem786.github.io/open-source/nuclei-raw-http-parser-panic.html",
+        "headline": "Preventing a raw HTTP parser panic in Nuclei",
+        "description": "Technical case study of Nuclei PR #7525, which fixed an empty-slice access triggered by a single-LF request body.",
+        "inLanguage": "en",
+        "isPartOf": { "@id": "https://zainnadeem786.github.io/#website" },
+        "author": { "@id": "https://zainnadeem786.github.io/#person" },
+        "about": ["Nuclei", "Go", "Raw HTTP parsing", "Reliability", "Regression testing"],
+        "keywords": ["Nuclei", "HTTP parser", "Go", "parser reliability", "regression testing"],
+        "citation": [
+          "https://github.com/projectdiscovery/nuclei/issues/7524",
+          "https://github.com/projectdiscovery/nuclei/pull/7525",
+          "https://github.com/projectdiscovery/nuclei/commit/0888e6244d1769d562a1f6910e61ff58e68efddf"
+        ],
+        "breadcrumb": { "@id": "https://zainnadeem786.github.io/open-source/nuclei-raw-http-parser-panic.html#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://zainnadeem786.github.io/open-source/nuclei-raw-http-parser-panic.html#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zainnadeem786.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Open Source", "item": "https://zainnadeem786.github.io/open-source.html" },
+          { "@type": "ListItem", "position": 3, "name": "Nuclei raw HTTP parser fix", "item": "https://zainnadeem786.github.io/open-source/nuclei-raw-http-parser-panic.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="article-page research-article-page open-source-article-page">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" data-header><div class="container nav-shell">
+    <a class="brand" href="../index.html" aria-label="Zain Nadeem, home"><span class="brand-mark" aria-hidden="true">ZN</span><span>Zain Nadeem</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+    <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation"><a class="nav-link" href="../index.html#about">About</a><a class="nav-link" href="../index.html#projects">Projects</a><a class="nav-link" href="../research.html">Research</a><a class="nav-link" href="../open-source.html" aria-current="page">Open Source</a><a class="nav-link" href="../index.html#expertise">Expertise</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.2A8.7 8.7 0 0 1 8.8 3.8 8.7 8.7 0 1 0 20.2 15.2Z"/></svg></button><a class="nav-link nav-link-accent" href="../index.html#contact">Contact</a></nav>
+  </div></header>
+
+  <main id="main-content">
+    <header class="research-article-hero">
+      <div class="article-wide-shell">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="../open-source.html">Open Source</a><span aria-hidden="true">/</span><span>Nuclei PR #7525</span></nav>
+        <div class="research-hero-copy reveal">
+          <p class="case-kicker">Open source / Parsing reliability</p>
+          <h1>Preventing a raw HTTP parser panic in Nuclei</h1>
+          <p class="page-intro">How a one-byte request body exposed an empty-slice access in two parsing entry points—and how a small guard plus boundary-focused tests closed the failure mode.</p>
+        </div>
+        <dl class="research-facts reveal" aria-label="Contribution facts">
+          <div><dt>Project</dt><dd>Nuclei</dd></div><div><dt>Contribution</dt><dd>PR #7525</dd></div><div><dt>Related report</dt><dd>Issue #7524</dd></div><div><dt>Role</dt><dd>Issue reporter and PR author</dd></div><div><dt>Outcome</dt><dd>Merged 17 July 2026</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <div class="article-wide-shell research-article-layout">
+      <aside class="article-toc reveal" aria-label="On this page"><span>On this page</span><a href="#overview">Overview</a><a href="#problem">Problem</a><a href="#investigation">Investigation</a><a href="#root-cause">Root cause</a><a href="#fix">The fix</a><a href="#testing">Regression testing</a><a href="#outcome">Upstream outcome</a><a href="#takeaways">Takeaways</a><a href="#references">References</a></aside>
+
+      <article class="research-prose">
+        <section id="overview" class="research-prose-section reveal">
+          <span class="article-label">01 / Overview</span>
+          <h2>A narrow input exposed a missing boundary check.</h2>
+          <p>Nuclei accepts raw HTTP request templates and parses their header and body sections before execution. Issue <code>#7524</code> documented that a request body consisting of a single line-feed byte could cause both <code>ParseRawRequest</code> and <code>ParseRawRequestWithURL</code> to panic.</p>
+          <p>The failure was deterministic, small enough to reproduce without load, and localized to body normalization. Zain Nadeem authored the public issue and the merged patch in PR <code>#7525</code>.</p>
+          <aside class="research-callout"><strong>Classification:</strong> The public upstream record treats this as a parser robustness bug. This case study does not describe it as a published vulnerability or assign a security severity.</aside>
+        </section>
+
+        <section id="problem" class="research-prose-section reveal">
+          <span class="article-label">02 / Problem and context</span>
+          <h2>The parser removed the only byte, then indexed the result.</h2>
+          <p>The affected code normalized line endings at the end of a raw request body. For ordinary input, inspecting the last byte is safe because bytes remain after normalization. A body containing only <code>\n</code> is different: removing that trailing line feed leaves an empty slice.</p>
+          <div class="technical-flow" aria-label="Failure sequence"><span>Body = LF</span><i aria-hidden="true">→</i><span>Trim trailing LF</span><i aria-hidden="true">→</i><span>Body = empty</span><i aria-hidden="true">→</i><span>Index last byte</span><i aria-hidden="true">→</i><span>Panic</span></div>
+          <p>Because the same normalization logic appeared in two public parser entry points, a complete correction had to cover both paths. Fixing only one function would have left the equivalent input failure reachable through the other API.</p>
+        </section>
+
+        <section id="investigation" class="research-prose-section reveal">
+          <span class="article-label">03 / Investigation</span>
+          <h2>Reduce the input and follow each slice-length transition.</h2>
+          <p>The useful reproduction was not a complex request. It was the smallest body that changes length during normalization: one line-feed character. Comparing that input with an empty body, a CRLF-only body, and a non-empty body ending in LF separated three questions:</p>
+          <ul class="article-list"><li>Does the parser handle a body that begins empty?</li><li>Does trimming one newline make a previously non-empty body empty?</li><li>Does ordinary content ending in a newline retain its content without a panic?</li></ul>
+          <p>Tracing those cases through both parser functions identified the shared assumption: code reached a second last-byte check without re-establishing that the slice still contained a byte.</p>
+        </section>
+
+        <section id="root-cause" class="research-prose-section reveal">
+          <span class="article-label">04 / Root cause</span>
+          <h2>The first guard did not protect the second index operation.</h2>
+          <p>A length check made the initial trailing-byte inspection safe. After the code shortened the slice, however, the earlier check no longer described the current state. The subsequent <code>bin[len(bin)-1]</code> access assumed at least one byte remained.</p>
+          <pre><code>// Simplified affected shape
+if len(body) &gt; 0 &amp;&amp; body[len(body)-1] == '\n' {
+    body = body[:len(body)-1]
+}
+
+// body may now be empty
+if body[len(body)-1] == '\r' {
+    body = body[:len(body)-1]
+}</code></pre>
+          <p>This is a common boundary error in destructive normalization: validation performed before a mutation does not automatically make later indexing safe.</p>
+        </section>
+
+        <section id="fix" class="research-prose-section reveal">
+          <span class="article-label">05 / The fix</span>
+          <h2>Re-check the invariant at every index boundary.</h2>
+          <p>PR <code>#7525</code> added explicit non-empty checks before the trailing-byte inspections in both parser implementations. The patch did not change how normal request bodies are decoded; it only prevents an index operation when normalization has produced an empty slice.</p>
+          <pre><code>// Simplified corrected shape
+if len(body) &gt; 0 &amp;&amp; body[len(body)-1] == '\n' {
+    body = body[:len(body)-1]
+}
+if len(body) &gt; 0 &amp;&amp; body[len(body)-1] == '\r' {
+    body = body[:len(body)-1]
+}</code></pre>
+          <p>Keeping the guard next to the access makes the safety condition local and reviewable. Mirroring the change across both entry points also avoids behavior drifting between raw parsing APIs.</p>
+        </section>
+
+        <section id="testing" class="research-prose-section reveal">
+          <span class="article-label">06 / Regression testing</span>
+          <h2>Test the boundary on both sides of the mutation.</h2>
+          <p>The merged change added table-driven coverage that passed four body shapes through both parser functions. The assertions checked that parsing did not panic, returned no error, and produced the expected body.</p>
+          <div class="responsive-table" role="region" aria-label="Nuclei regression cases" tabindex="0"><table><thead><tr><th>Input</th><th>Purpose</th><th>Expected result</th></tr></thead><tbody><tr><td><code>"\n"</code></td><td>Original failing boundary</td><td>No panic; empty normalized body</td></tr><tr><td><code>"\r\n"</code></td><td>Two-byte line ending</td><td>No panic; empty normalized body</td></tr><tr><td><code>""</code></td><td>Already empty input</td><td>No panic; empty body</td></tr><tr><td><code>"A\n"</code></td><td>Non-empty body with trailing LF</td><td>No panic; content retained</td></tr></tbody></table></div>
+          <p>This matrix protects the original failure and the adjacent edge cases most likely to regress if the normalization logic changes later.</p>
+        </section>
+
+        <section id="outcome" class="research-prose-section reveal">
+          <span class="article-label">07 / Upstream outcome</span>
+          <h2>The report and authored patch form one verified contribution.</h2>
+          <p>Issue <code>#7524</code> was opened by Zain Nadeem with the minimal reproduction and root-cause location. PR <code>#7525</code>, also authored by Zain, implemented the guards and regression tests. The PR was merged on 17 July 2026 as commit <code>0888e6244d1769d562a1f6910e61ff58e68efddf</code>.</p>
+          <p>The portfolio therefore presents the merged PR as the primary contribution and the issue as its investigation record. It does not substitute the closed issue for a merged patch or attribute a maintainer-authored remediation to Zain.</p>
+        </section>
+
+        <section id="takeaways" class="research-prose-section reveal">
+          <span class="article-label">08 / Engineering takeaways</span>
+          <h2>Mutation invalidates assumptions about collection length.</h2>
+          <ul class="article-list"><li>Place bounds checks immediately beside index operations when an earlier step can shrink the collection.</li><li>When duplicate parser entry points implement the same normalization, audit and test both rather than assuming one route represents all callers.</li><li>Use the smallest boundary input to expose state transitions; a one-byte case made the empty-slice transition obvious.</li><li>Regression matrices should include the exact failure, an already-empty input, the related CRLF form, and a normal non-empty control.</li></ul>
+        </section>
+
+        <section id="references" class="research-prose-section reveal">
+          <span class="article-label">09 / References</span>
+          <h2>Authoritative upstream record.</h2>
+          <ul class="reference-list"><li><a href="https://github.com/projectdiscovery/nuclei/issues/7524" target="_blank" rel="noopener noreferrer">Nuclei issue #7524 — original report <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/projectdiscovery/nuclei/pull/7525" target="_blank" rel="noopener noreferrer">Nuclei PR #7525 — merged fix and tests <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/projectdiscovery/nuclei/commit/0888e6244d1769d562a1f6910e61ff58e68efddf" target="_blank" rel="noopener noreferrer">Upstream merge commit <span aria-hidden="true">↗</span></a></li></ul>
+        </section>
+
+        <nav class="research-article-nav reveal" aria-label="Open-source article navigation"><a href="../open-source.html"><span>Open Source index</span><strong>All contributions</strong></a><a href="vscode-powershell-environment-quoting.html"><span>Next case study</span><strong>VS Code PowerShell quoting →</strong></a></nav>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-layout"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">ZN</span><span>Zain Nadeem</span></a><p>© <span data-current-year>2026</span> Zain Nadeem</p><a class="text-link" href="../index.html#contact">Contact <span aria-hidden="true">→</span></a></div></footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

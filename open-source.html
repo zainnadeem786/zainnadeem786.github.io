@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <script>(()=>{try{const s=localStorage.getItem("theme");document.documentElement.dataset.theme=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Open Source Contributions | Zain Nadeem</title>
-  <meta name="description" content="Verified open-source bug fixes and issue research by Zain Nadeem across Python, web frameworks, developer tooling, and security projects.">
+  <title>Open Source Engineering | Zain Nadeem</title>
+  <meta name="description" content="Technical case studies and verified open-source contributions by Zain Nadeem across CPython, Visual Studio Code, Celery, CyberChef, Django REST Framework, OWASP APTS, and Nuclei.">
   <meta name="author" content="Zain Nadeem">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#f4efe5" data-theme-color>
@@ -14,8 +14,8 @@
   <link rel="manifest" href="manifest.webmanifest">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Zain Nadeem">
-  <meta property="og:title" content="Open Source Contributions | Zain Nadeem">
-  <meta property="og:description" content="Selected merged bug fixes and technical contributions across established open-source projects.">
+  <meta property="og:title" content="Open Source Engineering | Zain Nadeem">
+  <meta property="og:description" content="Evidence-based technical case studies and verified contributions across established open-source projects.">
   <meta property="og:url" content="https://zainnadeem786.github.io/open-source.html">
   <meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg">
   <meta property="og:image:type" content="image/svg+xml">
@@ -23,8 +23,8 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Open Source Contributions | Zain Nadeem">
-  <meta name="twitter:description" content="Selected merged bug fixes and technical contributions across established open-source projects.">
+  <meta name="twitter:title" content="Open Source Engineering | Zain Nadeem">
+  <meta name="twitter:description" content="Evidence-based technical case studies and verified contributions across established open-source projects.">
   <meta name="twitter:image" content="https://zainnadeem786.github.io/assets/images/social-preview.svg">
   <meta name="twitter:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
   <link rel="stylesheet" href="css/style.css">
@@ -36,11 +36,19 @@
         "@type": "CollectionPage",
         "@id": "https://zainnadeem786.github.io/open-source.html#webpage",
         "url": "https://zainnadeem786.github.io/open-source.html",
-        "name": "Open Source Contributions | Zain Nadeem",
-        "description": "Verified open-source bug fixes, engineering contributions, and issue research by Zain Nadeem.",
+        "name": "Open Source Engineering | Zain Nadeem",
+        "description": "Technical case studies and verified open-source engineering contributions by Zain Nadeem.",
         "inLanguage": "en",
         "isPartOf": { "@id": "https://zainnadeem786.github.io/#website" },
         "about": { "@id": "https://zainnadeem786.github.io/#person" },
+        "hasPart": [
+          { "@id": "https://zainnadeem786.github.io/open-source/nuclei-raw-http-parser-panic.html#article" },
+          { "@id": "https://zainnadeem786.github.io/open-source/vscode-powershell-environment-quoting.html#article" },
+          { "@id": "https://zainnadeem786.github.io/open-source/cpython-windows-blocking-profiler.html#article" },
+          { "@id": "https://zainnadeem786.github.io/open-source/celery-pidbox-consumer-cleanup.html#article" },
+          { "@id": "https://zainnadeem786.github.io/open-source/cyberchef-stale-presenter-state.html#article" },
+          { "@id": "https://zainnadeem786.github.io/open-source/cpython-path-normpath-null-check.html#article" }
+        ],
         "breadcrumb": { "@id": "https://zainnadeem786.github.io/open-source.html#breadcrumb" },
         "mainEntity": {
           "@type": "ItemList",
@@ -51,7 +59,7 @@
             { "@type": "ListItem", "position": 4, "name": "Celery contribution", "url": "https://zainnadeem786.github.io/open-source.html#celery" },
             { "@type": "ListItem", "position": 5, "name": "Visual Studio Code contributions", "url": "https://zainnadeem786.github.io/open-source.html#visual-studio-code" },
             { "@type": "ListItem", "position": 6, "name": "OWASP APTS contribution", "url": "https://zainnadeem786.github.io/open-source.html#owasp-apts" },
-            { "@type": "ListItem", "position": 7, "name": "Nuclei issue research", "url": "https://zainnadeem786.github.io/open-source.html#nuclei" }
+            { "@type": "ListItem", "position": 7, "name": "Nuclei parser contribution", "url": "https://zainnadeem786.github.io/open-source.html#nuclei" }
           ]
         }
       },
@@ -96,22 +104,37 @@
         <div class="reveal">
           <p class="case-kicker">Selected public contributions</p>
           <h1>Engineering in public.</h1>
-          <p class="page-intro">Selected merged bug fixes, engineering contributions, and issue research by Zain Nadeem across Python, web frameworks, developer tooling, security tooling, and open-source infrastructure.</p>
+          <p class="page-intro">Selected merged fixes and technical investigations across runtimes, developer tooling, distributed systems, web frameworks, and security tooling—documented from public upstream evidence.</p>
         </div>
       </div>
     </header>
 
     <div class="oss-shell">
-      <aside class="oss-note reveal"><p>A curated record of verified public contributions. Titles, authorship, and states are aligned with the linked GitHub records.</p></aside>
+      <aside class="oss-note reveal"><p>A curated record of verified public contributions. Titles, authorship, merge state, and technical claims are aligned with upstream issues, pull requests, diffs, and regression tests.</p></aside>
+
+      <section class="oss-analysis-index reveal" aria-labelledby="technical-breakdowns-title">
+        <header class="oss-analysis-header">
+          <div><span class="article-label">Selected analysis</span><h2 id="technical-breakdowns-title">Technical breakdowns</h2></div>
+          <p>Long-form case studies are reserved for contributions with enough public evidence to explain the problem, root cause, patch, and regression strategy without speculation.</p>
+        </header>
+        <div class="oss-analysis-grid">
+          <a class="oss-analysis-card" href="open-source/nuclei-raw-http-parser-panic.html"><span>Full case study · Nuclei</span><strong>Preventing a single-LF raw HTTP parser panic</strong><em>Parsing / Reliability <b aria-hidden="true">→</b></em></a>
+          <a class="oss-analysis-card" href="open-source/vscode-powershell-environment-quoting.html"><span>Full case study · Visual Studio Code</span><strong>Correct PowerShell quoting for terminal environment values</strong><em>Cross-platform tooling <b aria-hidden="true">→</b></em></a>
+          <a class="oss-analysis-card" href="open-source/cpython-windows-blocking-profiler.html"><span>Full case study · CPython</span><strong>Terminating Windows blocking samples after process exit</strong><em>Runtime / Windows <b aria-hidden="true">→</b></em></a>
+          <a class="oss-analysis-card" href="open-source/celery-pidbox-consumer-cleanup.html"><span>Full case study · Celery</span><strong>Cleaning up pidbox consumers during reset cycles</strong><em>Reliability / Resource lifecycle <b aria-hidden="true">→</b></em></a>
+          <a class="oss-analysis-card oss-analysis-card-note" href="open-source/cyberchef-stale-presenter-state.html"><span>Technical note · CyberChef</span><strong>Clearing stale presenter state on expected error paths</strong><em>State handling <b aria-hidden="true">→</b></em></a>
+          <a class="oss-analysis-card oss-analysis-card-note" href="open-source/cpython-path-normpath-null-check.html"><span>Technical note · CPython</span><strong>Propagating allocation failure in <code>os._path_normpath()</code></strong><em>C API robustness <b aria-hidden="true">→</b></em></a>
+        </div>
+      </section>
 
       <div class="open-source-index">
         <section class="oss-group reveal" id="cpython" aria-labelledby="cpython-title">
           <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">Py</span><div><h2 id="cpython-title">CPython</h2><p>Python runtime / standard library</p></div></div><span class="oss-group-kind">Bug fixes</span></header>
           <ul class="oss-entries">
             <li class="oss-entry"><div><span class="oss-reference">PR #152906</span><strong>gh-150880: Normalize Windows scandir wildcard paths</strong><p class="oss-summary">Normalizes Windows enumeration paths before appending wildcards so trailing-space paths behave consistently across file-system APIs.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/152906" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 152906 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
-            <li class="oss-entry"><div><span class="oss-reference">PR #152471</span><strong>gh-152356: Fix Windows blocking sampling after target process exit</strong><p class="oss-summary">Makes blocking profiler sampling terminate cleanly when its Windows target exits and preserves a replayable profile.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/152471" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 152471 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #152471</span><strong>gh-152356: Fix Windows blocking sampling after target process exit</strong><p class="oss-summary">Makes blocking profiler sampling terminate cleanly when its Windows target exits and preserves a replayable profile.</p><a class="oss-breakdown-link" href="open-source/cpython-windows-blocking-profiler.html">Read technical breakdown <span aria-hidden="true">→</span></a></div><span class="oss-category">Bug Fix / Runtime Reliability</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/152471" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 152471 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
             <li class="oss-entry"><div><span class="oss-reference">PR #152223</span><strong>gh-152099: Raise SendfileNotAvailableError for fallback-only transports</strong><p class="oss-summary">Returns the public asyncio exception consistently when native sendfile is unavailable and fallback behavior is disabled.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/152223" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 152223 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
-            <li class="oss-entry"><div><span class="oss-reference">PR #151779</span><strong>gh-151763: Fix NULL deref in <code>os._path_normpath()</code></strong><p class="oss-summary">Guards an allocation-failure path so bytes-path normalization raises <code>MemoryError</code> instead of dereferencing a null object.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/151779" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 151779 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #151779</span><strong>gh-151763: Fix NULL deref in <code>os._path_normpath()</code></strong><p class="oss-summary">Guards an allocation-failure path so bytes-path normalization raises <code>MemoryError</code> instead of dereferencing a null object.</p><a class="oss-breakdown-link" href="open-source/cpython-path-normpath-null-check.html">Read technical note <span aria-hidden="true">→</span></a></div><span class="oss-category">Bug Fix / C API Robustness</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/python/cpython/pull/151779" target="_blank" rel="noopener noreferrer" aria-label="View CPython PR 151779 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
           </ul>
         </section>
 
@@ -130,19 +153,19 @@
             <li class="oss-entry"><div><span class="oss-reference">PR #2682</span><strong>Add npm allowScripts policy for npm v12</strong><p class="oss-summary">Adds an explicit npm v12 install-script policy that permits required tooling while denying unnecessary dependency scripts.</p></div><span class="oss-category">Build Security / Compatibility</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2682" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2682 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
             <li class="oss-entry"><div><span class="oss-reference">PR #2615</span><strong>Handle invalid bcrypt salt errors in Bcrypt compare</strong><p class="oss-summary">Converts malformed bcrypt validation failures into CyberChef’s expected user-facing operation error path.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2615" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2615 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
             <li class="oss-entry"><div><span class="oss-reference">PR #2612</span><strong>Handle malformed image parser errors in View Bit Plane</strong><p class="oss-summary">Handles decoder failures from malformed image input as clear operation errors while preserving valid image behavior.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2612" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2612 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
-            <li class="oss-entry"><div><span class="oss-reference">PR #2589</span><strong>Fix stale presenter after expected operation errors</strong><p class="oss-summary">Clears stale presentation state on expected error paths so an earlier operation cannot alter later error output.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2589" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2589 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #2589</span><strong>Fix stale presenter after expected operation errors</strong><p class="oss-summary">Clears stale presentation state on expected error paths so an earlier operation cannot alter later error output.</p><a class="oss-breakdown-link" href="open-source/cyberchef-stale-presenter-state.html">Read technical note <span aria-hidden="true">→</span></a></div><span class="oss-category">Bug Fix / State Handling</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/gchq/CyberChef/pull/2589" target="_blank" rel="noopener noreferrer" aria-label="View CyberChef PR 2589 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
           </ul>
         </section>
 
         <section class="oss-group reveal" id="celery" aria-labelledby="celery-title">
           <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">Ce</span><div><h2 id="celery-title">Celery</h2><p>Distributed task processing</p></div></div><span class="oss-group-kind">Bug fix</span></header>
-          <ul class="oss-entries"><li class="oss-entry"><div><span class="oss-reference">PR #10363</span><strong>Fix pidbox consumer cleanup during reset cycles</strong><p class="oss-summary">Cancels and clears existing pidbox consumers before recreation to prevent stale transport resources during repeated worker resets.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/celery/celery/pull/10363" target="_blank" rel="noopener noreferrer" aria-label="View Celery PR 10363 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li></ul>
+          <ul class="oss-entries"><li class="oss-entry"><div><span class="oss-reference">PR #10363</span><strong>Fix pidbox consumer cleanup during reset cycles</strong><p class="oss-summary">Cancels and clears existing pidbox consumers before recreation to prevent stale transport resources during repeated worker resets.</p><a class="oss-breakdown-link" href="open-source/celery-pidbox-consumer-cleanup.html">Read technical breakdown <span aria-hidden="true">→</span></a></div><span class="oss-category">Bug Fix / Resource Lifecycle</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/celery/celery/pull/10363" target="_blank" rel="noopener noreferrer" aria-label="View Celery PR 10363 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li></ul>
         </section>
 
         <section class="oss-group reveal" id="visual-studio-code" aria-labelledby="vscode-title">
           <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">VS</span><div><h2 id="vscode-title">Visual Studio Code</h2><p>Developer tooling</p></div></div><span class="oss-group-kind">Bug fixes</span></header>
           <ul class="oss-entries">
-            <li class="oss-entry"><div><span class="oss-reference">PR #331753</span><strong>Fix PowerShell quoting for runInTerminal environment values</strong><p class="oss-summary">Escapes embedded single quotes in PowerShell environment assignments without changing literal backslashes or other shell behavior.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/microsoft/vscode/pull/331753" target="_blank" rel="noopener noreferrer" aria-label="View Visual Studio Code PR 331753 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #331753</span><strong>Fix PowerShell quoting for runInTerminal environment values</strong><p class="oss-summary">Escapes embedded single quotes in PowerShell environment assignments without changing literal backslashes or other shell behavior.</p><a class="oss-breakdown-link" href="open-source/vscode-powershell-environment-quoting.html">Read technical breakdown <span aria-hidden="true">→</span></a></div><span class="oss-category">Bug Fix / Cross-Platform Tooling</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/microsoft/vscode/pull/331753" target="_blank" rel="noopener noreferrer" aria-label="View Visual Studio Code PR 331753 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
             <li class="oss-entry"><div><span class="oss-reference">PR #328626</span><strong>Await Workspace Trust transition completion in <code>setUrisTrust()</code></strong><p class="oss-summary">Ensures callers resume only after asynchronous Workspace Trust participants finish and the trust-change event is emitted.</p></div><span class="oss-category">Bug Fix</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/microsoft/vscode/pull/328626" target="_blank" rel="noopener noreferrer" aria-label="View Visual Studio Code PR 328626 on GitHub">View on GitHub <span aria-hidden="true">↗</span></a></div></li>
           </ul>
         </section>
@@ -153,8 +176,9 @@
         </section>
 
         <section class="oss-group reveal" id="nuclei" aria-labelledby="nuclei-title">
-          <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">Nu</span><div><h2 id="nuclei-title">Nuclei</h2><p>Security automation / issue research</p></div></div><span class="oss-group-kind">Issue research</span></header>
-          <ul class="oss-entries"><li class="oss-entry"><div><span class="oss-reference">Issue #7524</span><strong>[BUG] Raw HTTP parser panics when request body consists of a single LF character</strong><p class="oss-summary">Documents a reproducible parser panic caused by a single-line-feed request body and identifies the empty-slice access behind it.</p></div><span class="oss-category">Bug Report / Issue Research</span><div class="oss-entry-action"><span class="oss-status oss-status-closed">Closed</span><a href="https://github.com/projectdiscovery/nuclei/issues/7524" target="_blank" rel="noopener noreferrer" aria-label="View Nuclei issue 7524 on GitHub">View issue on GitHub <span aria-hidden="true">↗</span></a></div></li></ul>
+          <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">Nu</span><div><h2 id="nuclei-title">Nuclei</h2><p>Security automation / raw HTTP parsing</p></div></div><span class="oss-group-kind">Reliability fix</span></header>
+          <ul class="oss-entries"><li class="oss-entry"><div><span class="oss-reference">PR #7525 · related issue #7524</span><strong>Fix raw HTTP parser panic on single-LF request body</strong><p class="oss-summary">Adds empty-slice guards to both raw request parser paths and regression coverage for LF-only, CRLF-only, empty, and non-empty bodies.</p><a class="oss-breakdown-link" href="open-source/nuclei-raw-http-parser-panic.html">Read technical breakdown <span aria-hidden="true">→</span></a></div><span class="oss-category">Bug Fix / Parsing Reliability</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged</span><a href="https://github.com/projectdiscovery/nuclei/pull/7525" target="_blank" rel="noopener noreferrer" aria-label="View Nuclei PR 7525 on GitHub">View PR on GitHub <span aria-hidden="true">↗</span></a></div></li></ul>
+          <p class="oss-related">Zain authored both the <a href="https://github.com/projectdiscovery/nuclei/issues/7524" target="_blank" rel="noopener noreferrer">reported issue #7524 <span aria-hidden="true">↗</span></a> and the merged remediation PR. The record is classified as a parser reliability fix, not a published vulnerability.</p>
         </section>
       </div>
 
