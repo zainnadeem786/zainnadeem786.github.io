@@ -260,6 +260,100 @@
     });
   }
 
+  const faqItems = [...document.querySelectorAll("details.faq-item")];
+
+  faqItems.forEach((details) => {
+    const summary = details.querySelector(".faq-summary");
+    const answer = details.querySelector(".faq-answer");
+    if (!summary || !answer) return;
+
+    const closeDetails = (targetDetails, animate = true) => {
+      const targetAnswer = targetDetails.querySelector(".faq-answer");
+      if (!targetDetails.open || !targetAnswer) return;
+
+      if (!animate || reducedMotionQuery.matches || typeof targetAnswer.animate !== "function") {
+        targetDetails.open = false;
+        targetDetails.classList.remove("is-closing", "is-opening");
+        return;
+      }
+
+      targetDetails.classList.remove("is-opening");
+      targetDetails.classList.add("is-closing");
+      const startHeight = targetAnswer.offsetHeight;
+
+      const animation = targetAnswer.animate(
+        [
+          { height: `${startHeight}px`, opacity: 1 },
+          { height: "0px", opacity: 0 }
+        ],
+        {
+          duration: 250,
+          easing: "cubic-bezier(0.2, 0.8, 0.2, 1)"
+        }
+      );
+
+      animation.onfinish = () => {
+        targetDetails.open = false;
+        targetDetails.classList.remove("is-closing");
+      };
+
+      animation.oncancel = () => {
+        targetDetails.classList.remove("is-closing");
+      };
+    };
+
+    const openDetails = (targetDetails, animate = true) => {
+      const targetAnswer = targetDetails.querySelector(".faq-answer");
+      if (!targetAnswer) return;
+
+      faqItems.forEach((other) => {
+        if (other !== targetDetails && other.open) {
+          closeDetails(other, animate);
+        }
+      });
+
+      if (!animate || reducedMotionQuery.matches || typeof targetAnswer.animate !== "function") {
+        targetDetails.open = true;
+        targetDetails.classList.remove("is-closing", "is-opening");
+        return;
+      }
+
+      targetDetails.classList.remove("is-closing");
+      targetDetails.classList.add("is-opening");
+      targetDetails.open = true;
+
+      const targetHeight = targetAnswer.scrollHeight;
+
+      const animation = targetAnswer.animate(
+        [
+          { height: "0px", opacity: 0 },
+          { height: `${targetHeight}px`, opacity: 1 }
+        ],
+        {
+          duration: 320,
+          easing: "cubic-bezier(0.16, 1, 0.3, 1)"
+        }
+      );
+
+      animation.onfinish = () => {
+        targetDetails.classList.remove("is-opening");
+      };
+
+      animation.oncancel = () => {
+        targetDetails.classList.remove("is-opening");
+      };
+    };
+
+    summary.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (details.open) {
+        closeDetails(details, true);
+      } else {
+        openDetails(details, true);
+      }
+    });
+  });
+
   document.querySelectorAll("[data-current-year]").forEach((element) => {
     element.textContent = String(new Date().getFullYear());
   });

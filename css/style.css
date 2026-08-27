@@ -244,6 +244,9 @@ body,
 .preview-contribution,
 .expertise-group,
 .focus-list li,
+.faq-item,
+.faq-icon,
+.about-answer-block,
 .page-hero,
 .research-card {
   transition: color var(--duration-base) var(--ease), background-color var(--duration-base) var(--ease), border-color var(--duration-base) var(--ease), box-shadow var(--duration-base) var(--ease);
@@ -1036,8 +1039,21 @@ p {
 .about-section,
 .research-section,
 .expertise-section,
+.faq-section,
 .contact-section {
   background: linear-gradient(180deg, transparent, var(--section-tint) 16%, var(--section-tint) 84%, transparent);
+}
+
+.about-answer-block {
+  margin-bottom: 1.25rem;
+  padding: 1.1rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: color-mix(in srgb, var(--accent-soft) 45%, var(--surface-soft));
+}
+
+.about-answer-block p {
+  margin-bottom: 0;
 }
 
 .editorial-copy {
@@ -1857,6 +1873,154 @@ p {
   max-width: 52ch;
   margin: 0;
   font-size: 0.82rem;
+}
+
+/* 12b. FAQ and Knowledge section */
+
+.faq-section {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.faq-shell {
+  display: grid;
+  gap: clamp(1.8rem, 4vw, 2.75rem);
+}
+
+.faq-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.faq-item {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, var(--card-from), var(--card-to));
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--duration-base) var(--ease), box-shadow var(--duration-base) var(--ease), background-color var(--duration-base) var(--ease);
+}
+
+.faq-item:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+}
+
+.faq-item[open] {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.faq-summary {
+  display: flex;
+  padding: clamp(1.1rem, 2.5vw, 1.35rem) clamp(1.2rem, 3vw, 1.6rem);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question {
+  color: var(--text);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.faq-item:hover .faq-question {
+  color: var(--accent-strong);
+}
+
+.faq-icon {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 2rem;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--muted);
+  background: var(--surface-soft);
+  transition: color var(--duration-fast) var(--ease), border-color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease), transform var(--duration-base) var(--ease-emphasized);
+}
+
+.faq-icon svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  transition: transform var(--duration-base) var(--ease-emphasized);
+}
+
+.faq-item[open] .faq-icon {
+  color: var(--accent);
+  border-color: var(--border-strong);
+  background: var(--accent-soft);
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 clamp(1.2rem, 3vw, 1.6rem) clamp(1.2rem, 3vw, 1.5rem);
+  border-top: 1px solid transparent;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.faq-item[open] .faq-answer {
+  border-top-color: color-mix(in srgb, var(--border) 60%, transparent);
+  padding-top: 1rem;
+}
+
+.faq-answer p {
+  margin-bottom: 0.75rem;
+}
+
+.faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-answer ul {
+  display: grid;
+  margin: 0.6rem 0 0.8rem;
+  padding-left: 1.25rem;
+  gap: 0.45rem;
+  list-style: disc;
+}
+
+.faq-answer li {
+  line-height: 1.6;
+}
+
+.faq-answer strong {
+  color: var(--text);
+}
+
+.faq-answer a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.faq-answer a:hover {
+  color: var(--accent-strong);
+}
+
+.faq-summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  border-radius: var(--radius-md);
 }
 
 /* 13. CTA, contact and footer */
