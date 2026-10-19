@@ -5,7 +5,7 @@
   <script>(()=>{try{const s=localStorage.getItem("theme");document.documentElement.dataset.theme=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Open Source Engineering | Zain Nadeem</title>
-  <meta name="description" content="Technical case studies and verified open-source contributions by Zain Nadeem across CPython, Visual Studio Code, Celery, CyberChef, Django REST Framework, OWASP APTS, and Nuclei.">
+  <meta name="description" content="Technical case studies and verified open-source contributions by Zain Nadeem across OpenThread, CPython, Visual Studio Code, Celery, CyberChef, Django REST Framework, OWASP APTS, and Nuclei.">
   <meta name="author" content="Zain Nadeem">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#f4efe5" data-theme-color>
@@ -15,7 +15,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Zain Nadeem">
   <meta property="og:title" content="Open Source Engineering | Zain Nadeem">
-  <meta property="og:description" content="Evidence-based technical case studies and verified contributions across established open-source projects.">
+  <meta property="og:description" content="Evidence-based technical case studies and verified contributions across OpenThread, CPython, Visual Studio Code, Celery, CyberChef, and Django REST Framework.">
   <meta property="og:url" content="https://zainnadeem786.github.io/open-source.html">
   <meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.png">
   <meta property="og:image:type" content="image/png">
@@ -24,7 +24,7 @@
   <meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Open Source Engineering | Zain Nadeem">
-  <meta name="twitter:description" content="Evidence-based technical case studies and verified contributions across established open-source projects.">
+  <meta name="twitter:description" content="Evidence-based technical case studies and verified contributions across OpenThread, CPython, Visual Studio Code, Celery, CyberChef, and Django REST Framework.">
   <meta name="twitter:image" content="https://zainnadeem786.github.io/assets/images/social-preview.png">
   <meta name="twitter:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
   <link rel="stylesheet" href="css/style.css">
@@ -57,7 +57,9 @@
           { "@id": "https://zainnadeem786.github.io/open-source/cyberchef-bcrypt-invalid-salt-errors.html#article" },
           { "@id": "https://zainnadeem786.github.io/open-source/cyberchef-malformed-image-errors.html#article" },
           { "@id": "https://zainnadeem786.github.io/open-source/vscode-workspace-trust-await.html#article" },
-          { "@id": "https://zainnadeem786.github.io/open-source/owasp-apts-ci-sanity-checks.html#article" }
+          { "@id": "https://zainnadeem786.github.io/open-source/owasp-apts-ci-sanity-checks.html#article" },
+          { "@id": "https://zainnadeem786.github.io/research/openthread-mle-address-registration-tlv.html#article" },
+          { "@id": "https://zainnadeem786.github.io/research/openthread-ipv6-fragment-reassembly.html#article" }
         ],
         "breadcrumb": { "@id": "https://zainnadeem786.github.io/open-source.html#breadcrumb" },
         "mainEntity": {
@@ -69,7 +71,8 @@
             { "@type": "ListItem", "position": 4, "name": "Celery contribution", "url": "https://zainnadeem786.github.io/open-source.html#celery" },
             { "@type": "ListItem", "position": 5, "name": "Visual Studio Code contributions", "url": "https://zainnadeem786.github.io/open-source.html#visual-studio-code" },
             { "@type": "ListItem", "position": 6, "name": "OWASP APTS contribution", "url": "https://zainnadeem786.github.io/open-source.html#owasp-apts" },
-            { "@type": "ListItem", "position": 7, "name": "Nuclei parser contribution", "url": "https://zainnadeem786.github.io/open-source.html#nuclei" }
+            { "@type": "ListItem", "position": 7, "name": "Nuclei parser contribution", "url": "https://zainnadeem786.github.io/open-source.html#nuclei" },
+            { "@type": "ListItem", "position": 8, "name": "OpenThread contributions", "url": "https://zainnadeem786.github.io/open-source.html#openthread" }
           ]
         }
       },
@@ -190,6 +193,15 @@
           <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">Nu</span><div><h2 id="nuclei-title">Nuclei</h2><p>Security automation / raw HTTP parsing</p></div></div><span class="oss-group-kind">Reliability fix</span></header>
           <ul class="oss-entries"><li class="oss-entry"><div><span class="oss-reference">Merged PR #7525 · supporting issue #7524</span><strong>Fix raw HTTP parser panic on single-LF request body</strong><p class="oss-summary">Adds empty-slice guards to both raw request parser paths and regression coverage for LF-only, CRLF-only, empty, and non-empty bodies.</p><a class="oss-breakdown-link" href="open-source/nuclei-raw-http-parser-panic.html">Read Case Study <span aria-hidden="true">→</span></a></div><span class="oss-category">Bug Fix / Parsing Reliability</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged PR</span><a href="https://github.com/projectdiscovery/nuclei/pull/7525" target="_blank" rel="noopener noreferrer" aria-label="View Nuclei PR 7525 on GitHub">View PR <span aria-hidden="true">↗</span></a></div></li></ul>
           <p class="oss-related">Zain authored both the <a href="https://github.com/projectdiscovery/nuclei/issues/7524" target="_blank" rel="noopener noreferrer">reported issue #7524 <span aria-hidden="true">↗</span></a> and the merged remediation PR. The record is classified as a parser reliability fix, not a published vulnerability.</p>
+        </section>
+
+        <section class="oss-group reveal" id="openthread" aria-labelledby="openthread-title">
+          <header class="oss-group-header"><div><span class="oss-mark" aria-hidden="true">OT</span><div><h2 id="openthread-title">OpenThread</h2><p>Thread mesh networking / IoT protocols</p></div></div><span class="oss-group-kind">Security research &amp; upstream fixes</span></header>
+          <ul class="oss-entries">
+            <li class="oss-entry"><div><span class="oss-reference">PR #13646 · Google OSS VRP #565787780</span><strong>[mle] Check error when parsing address registration TLV</strong><p class="oss-summary">Replaces error suppression with strict validation during Address Registration TLV parsing, preventing child address table corruption from malformed entries.</p><a class="oss-breakdown-link" href="research/openthread-mle-address-registration-tlv.html">Read Case Study <span aria-hidden="true">→</span></a></div><span class="oss-category">Security Fix / Protocol Parsing</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged PR</span><a href="https://github.com/openthread/openthread/pull/13646" target="_blank" rel="noopener noreferrer" aria-label="View OpenThread PR 13646 on GitHub">View PR <span aria-hidden="true">↗</span></a></div></li>
+            <li class="oss-entry"><div><span class="oss-reference">PR #13649 · Google OSS VRP #566027126</span><strong>[ip6] Fix IPv6 fragment reassembly with extension headers</strong><p class="oss-summary">Enforces RFC 8200 §4.5 compliance during IPv6 fragment reassembly by preserving unfragmentable extension header chains and adding Nexus regression coverage.</p><a class="oss-breakdown-link" href="research/openthread-ipv6-fragment-reassembly.html">Read Case Study <span aria-hidden="true">→</span></a></div><span class="oss-category">Security Fix / RFC Compliance</span><div class="oss-entry-action"><span class="oss-status oss-status-merged">Merged PR</span><a href="https://github.com/openthread/openthread/pull/13649" target="_blank" rel="noopener noreferrer" aria-label="View OpenThread PR 13649 on GitHub">View PR <span aria-hidden="true">↗</span></a></div></li>
+          </ul>
+          <p class="oss-related">Both vulnerabilities were independently identified, reported via Google OSS VRP, and patched upstream by Zain Nadeem. Merged into <code>openthread/openthread:main</code> and marked Fixed by Google Bug Hunters.</p>
         </section>
       </div>
 

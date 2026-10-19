@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>(()=>{try{const s=localStorage.getItem("theme");document.documentElement.dataset.theme=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenThread MLE Address Registration Parsing Analysis | Zain Nadeem</title>
+  <meta name="description" content="Technical analysis of error suppression during MLE Address Registration TLV parsing in OpenThread (src/core/thread/mle_ftd.cpp), child state corruption, and merged upstream fix in PR #13646.">
+  <meta name="author" content="Zain Nadeem">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#f4efe5" data-theme-color>
+  <link rel="canonical" href="https://zainnadeem786.github.io/research/openthread-mle-address-registration-tlv.html">
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta property="og:type" content="article"><meta property="og:site_name" content="Zain Nadeem"><meta property="og:title" content="OpenThread MLE Address Registration Parsing Analysis | Zain Nadeem"><meta property="og:description" content="Technical analysis of error suppression during MLE Address Registration TLV parsing in OpenThread, potential child state corruption, and merged upstream fix in PR #13646."><meta property="og:url" content="https://zainnadeem786.github.io/research/openthread-mle-address-registration-tlv.html"><meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="OpenThread MLE Address Registration Parsing Analysis | Zain Nadeem"><meta name="twitter:description" content="Technical analysis of error suppression during MLE Address Registration TLV parsing in OpenThread, potential child state corruption, and merged upstream fix in PR #13646."><meta name="twitter:image" content="https://zainnadeem786.github.io/assets/images/social-preview.png"><meta name="twitter:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "datePublished": "2026-10-19",
+        "dateModified": "2026-10-19",
+        "@id": "https://zainnadeem786.github.io/research/openthread-mle-address-registration-tlv.html#article",
+        "url": "https://zainnadeem786.github.io/research/openthread-mle-address-registration-tlv.html",
+        "mainEntityOfPage": "https://zainnadeem786.github.io/research/openthread-mle-address-registration-tlv.html",
+        "headline": "OpenThread MLE Address Registration TLV parsing error suppression and child state corruption",
+        "description": "Technical analysis of error suppression during MLE Address Registration TLV parsing in OpenThread (src/core/thread/mle_ftd.cpp), child state corruption, and upstream patch in PR #13646.",
+        "inLanguage": "en",
+        "isPartOf": { "@id": "https://zainnadeem786.github.io/#website" },
+        "author": { "@id": "https://zainnadeem786.github.io/#person" },
+        "about": [
+          "OpenThread",
+          "Thread Protocol",
+          "MLE Protocol",
+          "Address Registration TLV",
+          "Vulnerability Research",
+          "Google OSS VRP",
+          "Error Suppression"
+        ],
+        "citation": "https://github.com/openthread/openthread/pull/13646",
+        "breadcrumb": { "@id": "https://zainnadeem786.github.io/research/openthread-mle-address-registration-tlv.html#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://zainnadeem786.github.io/research/openthread-mle-address-registration-tlv.html#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zainnadeem786.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Security Research", "item": "https://zainnadeem786.github.io/research.html" },
+          { "@type": "ListItem", "position": 3, "name": "OpenThread MLE Address Registration", "item": "https://zainnadeem786.github.io/research/openthread-mle-address-registration-tlv.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="article-page research-article-page">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" data-header><div class="container nav-shell">
+    <a class="brand" href="../index.html" aria-label="Zain Nadeem, home"><span class="brand-mark" aria-hidden="true">ZN</span><span>Zain Nadeem</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+    <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation"><a class="nav-link" href="../index.html#about">About</a><a class="nav-link" href="../index.html#projects">Projects</a><a class="nav-link" href="../research.html" aria-current="page">Research</a><a class="nav-link" href="../open-source.html">Open Source</a><a class="nav-link" href="../index.html#expertise">Expertise</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.2A8.7 8.7 0 0 1 8.8 3.8 8.7 8.7 0 1 0 20.2 15.2Z"/></svg></button><a class="nav-link nav-link-accent" href="../index.html#contact">Contact</a></nav>
+  </div></header>
+
+  <main id="main-content">
+    <header class="research-article-hero">
+      <div class="article-wide-shell">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="../research.html">Research</a><span aria-hidden="true">/</span><span>OpenThread MLE Address Registration</span></nav>
+        <div class="research-hero-copy reveal">
+          <p class="case-kicker">Security research / Protocol parsing &amp; error handling</p>
+          <h1>OpenThread: MLE Address Registration TLV parsing error suppression</h1>
+          <p class="page-intro">How suppressing <code>ReadAndAdvance()</code> parser errors during Address Registration TLV processing could allow truncated or malformed TLVs to corrupt child address tables in OpenThread Full Thread Devices (FTDs).</p>
+        </div>
+        <dl class="research-facts reveal" aria-label="Research facts">
+          <div><dt>Project</dt><dd>OpenThread (Google)</dd></div>
+          <div><dt>Reference</dt><dd>Google OSS VRP #565787780</dd></div>
+          <div><dt>Upstream PR</dt><dd>PR #13646</dd></div>
+          <div><dt>Severity</dt><dd><span class="status status-moderate">VRP finding</span></dd></div>
+          <div><dt>Role</dt><dd>Researcher &amp; patch author</dd></div>
+          <div><dt>Status</dt><dd>Patched &amp; merged</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <div class="article-wide-shell research-article-layout">
+      <aside class="article-toc reveal" aria-label="On this page">
+        <span>On this page</span>
+        <a href="#summary">Executive summary</a>
+        <a href="#background">Protocol background</a>
+        <a href="#root-cause">Root cause &amp; error suppression</a>
+        <a href="#impact">Impact and scope</a>
+        <a href="#remediation">Upstream remediation</a>
+        <a href="#validation">Safe validation</a>
+        <a href="#timeline">Disclosure timeline</a>
+        <a href="#takeaways">Takeaways</a>
+        <a href="#references">References</a>
+      </aside>
+
+      <article class="research-prose">
+        <section id="summary" class="research-prose-section reveal">
+          <span class="article-label">01 / Executive summary</span>
+          <h2>Untrusted child MLE messages reached a parser loop that ignored read errors.</h2>
+          <p>In Thread mesh networks, child nodes—such as Sleepy End Devices (SEDs) and Minimal End Devices (MEDs)—register their IPv6 unicast addresses with their parent Full Thread Device (FTD) router using the Mesh Link Establishment (MLE) Address Registration TLV.</p>
+          <p>During incoming message processing in <code>Mle::ProcessAddressRegistrationTlv()</code>, the router decodes individual address entries inside a <code>while</code> loop. The parser used <code>ReadAndAdvance()</code> to extract the 1-byte entry control header and the subsequent 8-byte Interface Identifier (IID) or full 16-byte IPv6 address. Both operations were wrapped in <code>IgnoreError()</code>.</p>
+          <p>When malformed or truncated TLV entries caused <code>ReadAndAdvance()</code> to return <code>kErrorParse</code>, the failure was silently suppressed. The function continued executing subsequent address logic, calling <code>aChild.AddIp6Address()</code> and synchronizing child tables with uninitialized or partial buffer data. This created state corruption within the parent router's child address table and risked route misdirection or denial of service for the child node.</p>
+          <aside class="research-callout"><strong>Scope &amp; Attribution:</strong> This research was conducted by Zain Nadeem and reported through the Google Open Source Software Vulnerability Reward Program (Google OSS VRP, report #565787780). The maintainers reviewed, accepted, and merged the author's remediation patch in upstream PR #13646. Google Bug Hunters marked the report Fixed; final reward eligibility remains pending. No CVE or CVSS score has been officially assigned.</aside>
+        </section>
+
+        <section id="background" class="research-prose-section reveal">
+          <span class="article-label">02 / Protocol background</span>
+          <h2>MLE Address Registration maintains critical child-to-parent routing mappings.</h2>
+          <p>Under the Thread Specification, an FTD router acts as a proxy for its attached end devices. Because sleepy end devices frequently power down their radios to conserve battery, the parent router must maintain an accurate table of all IPv6 addresses configured on each child. When incoming IPv6 datagrams reach the router destined for a child, the router buffers the packet until the child polls for data.</p>
+          <div class="technical-flow" aria-label="MLE Address Registration Flow">
+            <span>Child Update / ID Req</span>
+            <i aria-hidden="true">→</i>
+            <span>Address Registration TLV</span>
+            <i aria-hidden="true">→</i>
+            <span>ProcessAddressRegistrationTlv()</span>
+            <i aria-hidden="true">→</i>
+            <span>Child::AddIp6Address()</span>
+            <i aria-hidden="true">→</i>
+            <span>Child Table Updated</span>
+          </div>
+          <p>The Address Registration TLV (Type 19) carries one or more address registration entries. Each entry begins with a 1-byte control header containing a compression bit (<code>b0</code>) and a 4-bit Context ID (CID). If compressed, an 8-byte IID follows; if uncompressed, a full 16-byte IPv6 address follows. Because this TLV directly dictates the router's routing table for child nodes, parser robustness is essential.</p>
+        </section>
+
+        <section id="root-cause" class="research-prose-section reveal">
+          <span class="article-label">03 / Root cause &amp; error suppression</span>
+          <h2>Silent error suppression allowed partial reads to update router state.</h2>
+          <p>The flaw resided in <code>src/core/thread/mle_ftd.cpp</code> inside the <code>Mle::ProcessAddressRegistrationTlv(RxInfo &amp;aRxInfo, Child &amp;aChild)</code> member function. The affected loop parsed entries sequentially from the message buffer until reaching <code>endOffset</code>:</p>
+          <pre><code>// src/core/thread/mle_ftd.cpp (prior to PR #13646)
+while (aRxInfo.mMessage.GetOffset() &lt; endOffset)
+{
+    AddressRegistrationEntry entry;
+
+    // FLAW: If message is truncated, ReadAndAdvance() returns kErrorParse,
+    // but IgnoreError() discards it and execution continues unconditionally.
+    IgnoreError(aRxInfo.mMessage.ReadAndAdvance(entry));
+
+    if (entry.IsCompressed())
+    {
+        Ip6::InterfaceIdentifier iid;
+
+        // FLAW: Truncated IID read error is also discarded
+        IgnoreError(aRxInfo.mMessage.ReadAndAdvance(iid));
+
+        // State mutation occurs with corrupted/uninitialized data:
+        aChild.AddIp6Address(address);
+    }
+    else
+    {
+        Ip6::Address address;
+
+        // FLAW: Uncompressed IPv6 address read error is also discarded
+        IgnoreError(aRxInfo.mMessage.ReadAndAdvance(address));
+
+        aChild.AddIp6Address(address);
+    }
+}</code></pre>
+          <p>If an incoming TLV ended prematurely—for example, if the TLV declared a length that exceeded the physical packet bounds, or contained an odd number of remaining bytes—<code>ReadAndAdvance()</code> returned <code>kErrorParse</code>. Because the return value was wrapped in <code>IgnoreError()</code>, the parsing loop did not exit. Instead, the local stack variables <code>entry</code>, <code>iid</code>, or <code>address</code> contained uninitialized stack memory or partial bytes from previous operations.</p>
+          <p>The router then invoked <code>aChild.AddIp6Address(address)</code> using this invalid data. In addition, when child address registration finishes, the router compares the newly registered address list against the child's existing addresses, removing any address not included in the update. Consequently, an aborted or corrupted parsing loop could both inject garbage addresses and trigger unintended removal of legitimate child addresses.</p>
+        </section>
+
+        <section id="impact" class="research-prose-section reveal">
+          <span class="article-label">04 / Impact and scope</span>
+          <h2>State corruption compromised child reachability and router memory.</h2>
+          <div class="responsive-table" role="region" aria-label="Security impact scope" tabindex="0">
+            <table>
+              <thead>
+                <tr><th>Security property</th><th>Observed scope</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Child Table Integrity</td><td>Invalid or uninitialized addresses added to child table</td></tr>
+                <tr><td>Address Cleanup State</td><td>Premature or erroneous eviction of legitimate child addresses</td></tr>
+                <tr><td>Network Reachability</td><td>Denial of Service (DoS) for child communication in Thread mesh</td></tr>
+                <tr><td>Confidentiality</td><td>No remote information disclosure identified</td></tr>
+                <tr><td>Remote Execution</td><td>No memory corruption or code execution identified</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The practical vulnerability is a targeted denial of service and state corruption against the child-parent relationship. In a Thread mesh network, an attacker or malfunctioning node could send crafted Child Update Requests that destabilize the parent FTD's internal address registry for child nodes.</p>
+        </section>
+
+        <section id="remediation" class="research-prose-section reveal">
+          <span class="article-label">05 / Upstream remediation</span>
+          <h2>PR #13646 enforces strict error propagation with <code>SuccessOrExit</code>.</h2>
+          <p>Zain Nadeem authored the remediation patch and submitted it upstream as <a href="https://github.com/openthread/openthread/pull/13646" target="_blank" rel="noopener noreferrer">PR #13646</a>. The fix replaces all instances of <code>IgnoreError()</code> in the address registration loop with OpenThread's idiomatic <code>SuccessOrExit(error = ...)</code> macro, immediately terminating parsing and returning <code>kErrorParse</code> if any read fails.</p>
+          <pre><code>// src/core/thread/mle_ftd.cpp (patched in PR #13646)
+while (aRxInfo.mMessage.GetOffset() &lt; endOffset)
+{
+    AddressRegistrationEntry entry;
+
+    SuccessOrExit(error = aRxInfo.mMessage.ReadAndAdvance(entry));
+
+    if (entry.IsCompressed())
+    {
+        Ip6::InterfaceIdentifier iid;
+
+        SuccessOrExit(error = aRxInfo.mMessage.ReadAndAdvance(iid));
+
+        // Validated address successfully populated
+        SuccessOrExit(error = networkData.GetContext(entry.GetContextId(), prefix));
+        address.SetPrefix(prefix);
+        address.SetIid(iid);
+    }
+    else
+    {
+        Ip6::Address address;
+
+        SuccessOrExit(error = aRxInfo.mMessage.ReadAndAdvance(address));
+    }
+
+    SuccessOrExit(error = aChild.AddIp6Address(address));
+}
+
+exit:
+    return error;</code></pre>
+          <p>With this change, any truncated, malformed, or out-of-bounds Address Registration TLV immediately aborts parsing at the exact byte where the read fails, preventing invalid state changes and discarding malformed registration packets before they can contaminate the child address table.</p>
+          <aside class="research-callout research-callout-action"><strong>Recommended action:</strong> Ensure OpenThread builds include commit <code>173769ac67ee15d5e2bb859c5a1214afac2b2192</code> (PR #13646) or later. In embedded C++ protocol implementations, avoid <code>IgnoreError()</code> on deserialization routines that precede state mutation.</aside>
+        </section>
+
+        <section id="validation" class="research-prose-section reveal">
+          <span class="article-label">06 / Safe validation</span>
+          <h2>Simulating boundary violations without destabilizing live mesh networks.</h2>
+          <p>Validation of the fix was conducted using OpenThread's simulation harness (`ot-cli-ftd` in POSIX simulation mode). A mock Child Update Request containing a truncated Address Registration TLV was sent to the FTD:</p>
+          <pre><code>// Truncated TLV payload: Type 19, Length 5 (requires at least 9 bytes for compressed IID)
+uint8_t truncatedTlv[] = {
+    0x13,       // TLV Type: Address Registration
+    0x05,       // TLV Length: 5 bytes (incomplete entry)
+    0x80,       // Entry Control: Compressed = 1, Context ID = 0
+    0x11, 0x22, 0x33, 0x44 // Truncated IID: only 4 bytes provided instead of 8
+};</code></pre>
+          <p>Prior to PR #13646, the router logged no parsing error and added a corrupted IPv6 address with partial stack garbage to the child entry. With PR #13646 applied, <code>ReadAndAdvance(iid)</code> returned <code>kErrorParse</code>, triggering <code>SuccessOrExit</code>, immediately aborting the handler, logging an error, and leaving the child address table completely clean.</p>
+        </section>
+
+        <section id="timeline" class="research-prose-section reveal">
+          <span class="article-label">07 / Disclosure timeline</span>
+          <h2>Coordinated disclosure through Google OSS VRP.</h2>
+          <p>This vulnerability was handled according to responsible disclosure principles through Google's Open Source Software Vulnerability Reward Program:</p>
+          <div class="technical-flow" aria-label="Disclosure timeline flow">
+            <span>Discovery</span>
+            <i aria-hidden="true">→</i>
+            <span>Google OSS VRP #565787780</span>
+            <i aria-hidden="true">→</i>
+            <span>Remediation PR #13646</span>
+            <i aria-hidden="true">→</i>
+            <span>Upstream Merge</span>
+            <i aria-hidden="true">→</i>
+            <span>Marked Fixed by Google</span>
+          </div>
+          <ul class="article-list">
+            <li><strong>Discovery &amp; Root Cause Analysis:</strong> Zain Nadeem identified the error suppression vulnerability in <code>mle_ftd.cpp</code> during code review of OpenThread's MLE parser.</li>
+            <li><strong>Vulnerability Report:</strong> Submitted through the Google OSS VRP portal (Report Reference #565787780).</li>
+            <li><strong>Remediation Development:</strong> Zain Nadeem developed the upstream fix and submitted pull request <a href="https://github.com/openthread/openthread/pull/13646" target="_blank" rel="noopener noreferrer">PR #13646</a> to <code>openthread/openthread</code>.</li>
+            <li><strong>Upstream Merge:</strong> Following review and validation by OpenThread core maintainers, PR #13646 was approved and merged into <code>main</code>.</li>
+            <li><strong>Status:</strong> Marked "Fixed" by Google Bug Hunters. Final VRP reward eligibility decision remains pending.</li>
+          </ul>
+        </section>
+
+        <section id="takeaways" class="research-prose-section reveal">
+          <span class="article-label">08 / Engineering takeaways</span>
+          <h2>Defensive protocol parsing requires fail-fast error semantics.</h2>
+          <ul class="article-list">
+            <li><strong>Never ignore parsing return codes:</strong> Wrapping deserialization functions like <code>ReadAndAdvance()</code> in <code>IgnoreError()</code> turns malformed network inputs into undefined internal state.</li>
+            <li><strong>State mutation must be atomic with validation:</strong> Do not update internal routing or address tables until the entire incoming data structure has been fully validated.</li>
+            <li><strong>Truncated packets are common attack vectors:</strong> Packet truncation, whether caused by network MTU truncation or malicious crafts, must always result in immediate parse termination.</li>
+            <li><strong>Idiomatic macros protect control flow:</strong> Using standardized error-handling macros such as <code>SuccessOrExit</code> ensures consistent failure paths across large C++ codebases.</li>
+          </ul>
+        </section>
+
+        <section id="references" class="research-prose-section reveal">
+          <span class="article-label">09 / References</span>
+          <h2>Authoritative upstream records.</h2>
+          <ul class="reference-list">
+            <li><a href="https://github.com/openthread/openthread/pull/13646" target="_blank" rel="noopener noreferrer">OpenThread Upstream PR #13646 <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://github.com/openthread/openthread" target="_blank" rel="noopener noreferrer">OpenThread Source Repository <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://bughunters.google.com/about/rules/6521328672505856/google-open-source-software-vulnerability-reward-program-rules" target="_blank" rel="noopener noreferrer">Google Open Source Software VRP Rules <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://www.threadgroup.org/support#specifications" target="_blank" rel="noopener noreferrer">Thread Group Specifications <span aria-hidden="true">↗</span></a></li>
+          </ul>
+        </section>
+
+        <nav class="research-article-nav reveal" aria-label="Research article navigation">
+          <a href="cve-2026-72912.html"><span>Previous analysis</span><strong>← CVE-2026-72912</strong></a>
+          <a href="openthread-ipv6-fragment-reassembly.html"><span>Next analysis</span><strong>OpenThread IPv6 Fragment Reassembly →</strong></a>
+        </nav>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-layout"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">ZN</span><span>Zain Nadeem</span></a><p>© <span data-current-year>2026</span> Zain Nadeem</p><a class="text-link" href="../index.html#contact">Contact <span aria-hidden="true">→</span></a></div></footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

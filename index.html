@@ -69,7 +69,10 @@
           "Docker",
           "Developer Tooling",
           "Open Source Software",
-          "Local AI"
+          "Local AI",
+          "IPv6",
+          "Thread Protocol",
+          "OpenThread"
         ]
       },
       {
@@ -272,6 +275,16 @@
             <div class="record-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published · Credited reporter</span></div>
             <a class="arrow-link" href="research/cve-2026-72912.html" aria-label="Read the technical analysis for CVE-2026-72912">Read technical analysis <span aria-hidden="true">→</span></a>
           </article>
+          <article class="disclosure-record reveal">
+            <div><span class="record-project">OpenThread (Google)</span><h3>OT-MLE-01</h3><p class="disclosure-title">Unmitigated State Corruption and Denial of Service in OpenThread MLE Address Registration TLV Parsing via Error Suppression</p><p class="record-id">Google OSS VRP #565787780 · PR #13646</p></div>
+            <div class="record-meta"><span class="status status-moderate">VRP finding</span><span class="record-state">Patched &amp; merged · Author</span></div>
+            <a class="arrow-link" href="research/openthread-mle-address-registration-tlv.html" aria-label="Read the technical analysis for OpenThread MLE Address Registration TLV parsing">Read technical analysis <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="disclosure-record reveal">
+            <div><span class="record-project">OpenThread (Google)</span><h3>OT-IP6-02</h3><p class="disclosure-title">OpenThread IPv6 Fragment Reassembly Non-Compliance and Extension Header Chain Corruption</p><p class="record-id">Google OSS VRP #566027126 · PR #13649</p></div>
+            <div class="record-meta"><span class="status status-moderate">VRP finding</span><span class="record-state">Patched &amp; merged · Author</span></div>
+            <a class="arrow-link" href="research/openthread-ipv6-fragment-reassembly.html" aria-label="Read the technical analysis for OpenThread IPv6 fragment reassembly">Read technical analysis <span aria-hidden="true">→</span></a>
+          </article>
         </div>
       </div>
     </section>
@@ -289,6 +302,7 @@
           <li class="preview-contribution reveal"><span>04</span><div><strong>Celery</strong><small>Merged bug fix</small></div><a class="arrow-link" href="open-source.html#celery">View contribution <span aria-hidden="true">→</span></a></li>
           <li class="preview-contribution reveal"><span>05</span><div><strong>Visual Studio Code</strong><small>Selected merged bug fixes</small></div><a class="arrow-link" href="open-source.html#visual-studio-code">View contributions <span aria-hidden="true">→</span></a></li>
           <li class="preview-contribution reveal"><span>06</span><div><strong>OWASP APTS</strong><small>Merged CI engineering contribution</small></div><a class="arrow-link" href="open-source.html#owasp-apts">View contribution <span aria-hidden="true">→</span></a></li>
+          <li class="preview-contribution reveal"><span>07</span><div><strong>OpenThread</strong><small>Security research &amp; protocol fixes</small></div><a class="arrow-link" href="open-source.html#openthread">View contributions <span aria-hidden="true">→</span></a></li>
         </ul>
         <a class="arrow-link contribution-all-link reveal" href="open-source.html">View all contributions <span aria-hidden="true">→</span></a>
       </div>
@@ -406,13 +420,15 @@
             </summary>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                <p>Zain publishes evidence-based vulnerability research coordinated through responsible disclosure. Published advisories include:</p>
+                <p>Zain publishes evidence-based vulnerability research coordinated through responsible disclosure. Published advisories and findings include:</p>
                 <ul>
                   <li><a href="research/cve-2026-73228.html"><strong>CVE-2026-73228 (DRF):</strong></a> Request size limit bypass affecting <code>request.data</code> parsing in Django REST Framework.</li>
                   <li><a href="research/cve-2026-73229.html"><strong>CVE-2026-73229 (DRF):</strong></a> Information disclosure risk in AdminRenderer during invalid write requests.</li>
                   <li><a href="research/cve-2026-72912.html"><strong>CVE-2026-72912 (CyberChef):</strong></a> Regular expression denial of service (ReDoS) / CPU exhaustion in the recipe parser.</li>
+                  <li><a href="research/openthread-mle-address-registration-tlv.html"><strong>OT-MLE-01 (OpenThread):</strong></a> State corruption and denial of service via error suppression in MLE Address Registration TLV parsing (Google OSS VRP #565787780, merged PR #13646).</li>
+                  <li><a href="research/openthread-ipv6-fragment-reassembly.html"><strong>OT-IP6-02 (OpenThread):</strong></a> IPv6 fragment reassembly non-compliance (RFC 8200 §4.5) and extension header chain corruption (Google OSS VRP #566027126, merged PR #13649).</li>
                 </ul>
-                <p>All research records include reproducible test cases, root-cause analysis, and links to official GitHub Security Advisories.</p>
+                <p>All research records include reproducible test cases, root-cause analysis, and links to official GitHub Security Advisories and merged upstream patches.</p>
               </div>
             </div>
           </details>
@@ -426,8 +442,9 @@
             </summary>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                <p>Zain has authored 16 verified merged pull requests and reliability fixes across major open-source ecosystems:</p>
+                <p>Zain has authored 18 verified merged pull requests and reliability fixes across major open-source ecosystems:</p>
                 <ul>
+                  <li><strong>OpenThread:</strong> Thread mesh network protocol MLE Address Registration TLV error handling (PR #13646) and IPv6 RFC 8200 §4.5 fragment reassembly extension header preservation (PR #13649).</li>
                   <li><strong>CPython:</strong> Windows scandir trailing space normalization, blocking profiler exit termination, asyncio sendfile exception handling, and normpath allocation safety.</li>
                   <li><strong>Django REST Framework:</strong> Unique-together validation error handling, OpenAPI zero-numeric bounds schemas, and negative integer int64 boundary detection.</li>
                   <li><strong>CyberChef:</strong> npm allowScripts build security policy, bcrypt invalid salt handling, malformed image decoding, and presenter state cleanup.</li>

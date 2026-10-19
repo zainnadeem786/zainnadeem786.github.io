@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://zainnadeem786.github.io/</loc><lastmod>2026-08-22</lastmod></url>
-  <url><loc>https://zainnadeem786.github.io/research.html</loc><lastmod>2026-08-22</lastmod></url>
+  <url><loc>https://zainnadeem786.github.io/</loc><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://zainnadeem786.github.io/research.html</loc><lastmod>2026-10-19</lastmod></url>
   <url><loc>https://zainnadeem786.github.io/research/cve-2026-73228.html</loc><lastmod>2026-08-22</lastmod></url>
   <url><loc>https://zainnadeem786.github.io/research/cve-2026-73229.html</loc><lastmod>2026-08-22</lastmod></url>
   <url><loc>https://zainnadeem786.github.io/research/cve-2026-72912.html</loc><lastmod>2026-08-22</lastmod></url>
-  <url><loc>https://zainnadeem786.github.io/open-source.html</loc><lastmod>2026-08-23</lastmod></url>
+  <url><loc>https://zainnadeem786.github.io/research/openthread-mle-address-registration-tlv.html</loc><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://zainnadeem786.github.io/research/openthread-ipv6-fragment-reassembly.html</loc><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://zainnadeem786.github.io/open-source.html</loc><lastmod>2026-10-19</lastmod></url>
   <url><loc>https://zainnadeem786.github.io/open-source/cpython-windows-scandir-trailing-space.html</loc><lastmod>2026-08-23</lastmod></url>
   <url><loc>https://zainnadeem786.github.io/open-source/cpython-windows-blocking-profiler.html</loc><lastmod>2026-08-23</lastmod></url>
   <url><loc>https://zainnadeem786.github.io/open-source/cpython-asyncio-sendfile-exception.html</loc><lastmod>2026-08-23</lastmod></url>

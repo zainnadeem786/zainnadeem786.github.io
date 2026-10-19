@@ -5,15 +5,15 @@
   <script>(()=>{try{const s=localStorage.getItem("theme");document.documentElement.dataset.theme=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Security Research &amp; CVEs | Zain Nadeem</title>
-  <meta name="description" content="Security research by Zain Nadeem, including verified CVE advisories affecting Django REST Framework and CyberChef, with links to official records.">
+  <meta name="description" content="Security research by Zain Nadeem, including OpenThread vulnerabilities reported via Google OSS VRP, and verified CVE advisories affecting Django REST Framework and CyberChef.">
   <meta name="author" content="Zain Nadeem">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#f4efe5" data-theme-color>
   <link rel="canonical" href="https://zainnadeem786.github.io/research.html">
   <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
-  <meta property="og:type" content="website"><meta property="og:site_name" content="Zain Nadeem"><meta property="og:title" content="Security Research &amp; CVEs | Zain Nadeem"><meta property="og:description" content="Verified CVE research affecting Django REST Framework and CyberChef, with authoritative advisory links."><meta property="og:url" content="https://zainnadeem786.github.io/research.html"><meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Security Research &amp; CVEs | Zain Nadeem"><meta name="twitter:description" content="Verified CVE research affecting Django REST Framework and CyberChef, with authoritative advisory links."><meta name="twitter:image" content="https://zainnadeem786.github.io/assets/images/social-preview.png"><meta name="twitter:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="Zain Nadeem"><meta property="og:title" content="Security Research &amp; CVEs | Zain Nadeem"><meta property="og:description" content="Verified security research affecting OpenThread, Django REST Framework, and CyberChef, with authoritative advisory links."><meta property="og:url" content="https://zainnadeem786.github.io/research.html"><meta property="og:image" content="https://zainnadeem786.github.io/assets/images/social-preview.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Security Research &amp; CVEs | Zain Nadeem"><meta name="twitter:description" content="Verified security research affecting OpenThread, Django REST Framework, and CyberChef, with authoritative advisory links."><meta name="twitter:image" content="https://zainnadeem786.github.io/assets/images/social-preview.png"><meta name="twitter:image:alt" content="Zain Nadeem — Software Engineer and Security Researcher">
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">
   {
@@ -24,7 +24,7 @@
         "@id": "https://zainnadeem786.github.io/research.html#webpage",
         "url": "https://zainnadeem786.github.io/research.html",
         "name": "Security Research & CVEs | Zain Nadeem",
-        "description": "Verified CVE research affecting Django REST Framework and CyberChef, with authoritative advisory links.",
+        "description": "Verified security research affecting OpenThread, Django REST Framework, and CyberChef, with authoritative advisory links.",
         "inLanguage": "en",
         "isPartOf": { "@id": "https://zainnadeem786.github.io/#website" },
         "about": { "@id": "https://zainnadeem786.github.io/#person" },
@@ -65,6 +65,30 @@
                 "identifier": ["CVE-2026-72912", "GHSA-w74r-jxjh-gwr6"],
                 "url": "https://zainnadeem786.github.io/research/cve-2026-72912.html",
                 "sameAs": "https://github.com/gchq/CyberChef/security/advisories/GHSA-w74r-jxjh-gwr6",
+                "contributor": { "@id": "https://zainnadeem786.github.io/#person" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "Unmitigated State Corruption and Denial of Service in OpenThread MLE Address Registration TLV Parsing via Error Suppression",
+                "identifier": ["Google OSS VRP #565787780", "PR #13646"],
+                "url": "https://zainnadeem786.github.io/research/openthread-mle-address-registration-tlv.html",
+                "sameAs": "https://github.com/openthread/openthread/pull/13646",
+                "contributor": { "@id": "https://zainnadeem786.github.io/#person" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "OpenThread IPv6 Fragment Reassembly Non-Compliance and Extension Header Chain Corruption",
+                "identifier": ["Google OSS VRP #566027126", "PR #13649"],
+                "url": "https://zainnadeem786.github.io/research/openthread-ipv6-fragment-reassembly.html",
+                "sameAs": "https://github.com/openthread/openthread/pull/13649",
                 "contributor": { "@id": "https://zainnadeem786.github.io/#person" }
               }
             }
@@ -117,6 +141,16 @@
           <div><span class="record-project">CyberChef</span><h2>CVE-2026-72912</h2><h3 class="advisory-title">CyberChef’s pretty-recipe parser vulnerable to client-side ReDoS / CPU exhaustion when parsing a malformed <code>#recipe=</code> URL</h3><p class="research-summary">A malformed pretty-recipe URL fragment could trigger inefficient regular-expression processing in the client-side parser, causing prolonged CPU usage and making the page unresponsive.</p><p class="research-card-id">GHSA-w74r-jxjh-gwr6</p></div>
           <div class="research-card-meta"><span class="status status-moderate">Moderate</span><span class="record-state">Published</span><span class="research-role">Credited reporter: Zain Nadeem</span></div>
           <div class="research-card-actions"><a class="arrow-link" href="research/cve-2026-72912.html">Read technical analysis <span aria-hidden="true">→</span></a><a class="text-link" href="https://github.com/gchq/CyberChef/security/advisories/GHSA-w74r-jxjh-gwr6" target="_blank" rel="noopener noreferrer" aria-label="View the official advisory for CVE-2026-72912">Official advisory <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="research-card reveal">
+          <div><span class="record-project">OpenThread (Google)</span><h2>OT-MLE-01</h2><h3 class="advisory-title">Unmitigated State Corruption and Denial of Service in OpenThread MLE Address Registration TLV Parsing via Error Suppression</h3><p class="research-summary">Suppressing <code>ReadAndAdvance()</code> parser errors in Address Registration TLV processing allowed malformed entries to corrupt child address tables in OpenThread FTD routers.</p><p class="research-card-id">Google OSS VRP #565787780 · PR #13646</p></div>
+          <div class="research-card-meta"><span class="status status-moderate">VRP finding</span><span class="record-state">Patched &amp; merged</span><span class="research-role">Researcher &amp; patch author: Zain Nadeem</span></div>
+          <div class="research-card-actions"><a class="arrow-link" href="research/openthread-mle-address-registration-tlv.html">Read technical analysis <span aria-hidden="true">→</span></a><a class="text-link" href="https://github.com/openthread/openthread/pull/13646" target="_blank" rel="noopener noreferrer" aria-label="View OpenThread PR 13646 on GitHub">Upstream PR #13646 <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="research-card reveal">
+          <div><span class="record-project">OpenThread (Google)</span><h2>OT-IP6-02</h2><h3 class="advisory-title">OpenThread IPv6 Fragment Reassembly Non-Compliance and Extension Header Chain Corruption</h3><p class="research-summary">Directly overwriting the base IPv6 Next Header during fragment reassembly broke extension header chains, violating RFC 8200 §4.5 and dropping valid fragmented traffic.</p><p class="research-card-id">Google OSS VRP #566027126 · PR #13649</p></div>
+          <div class="research-card-meta"><span class="status status-moderate">VRP finding</span><span class="record-state">Patched &amp; merged</span><span class="research-role">Researcher &amp; patch author: Zain Nadeem</span></div>
+          <div class="research-card-actions"><a class="arrow-link" href="research/openthread-ipv6-fragment-reassembly.html">Read technical analysis <span aria-hidden="true">→</span></a><a class="text-link" href="https://github.com/openthread/openthread/pull/13649" target="_blank" rel="noopener noreferrer" aria-label="View OpenThread PR 13649 on GitHub">Upstream PR #13649 <span aria-hidden="true">↗</span></a></div>
         </article>
       </div>
       <p class="back-to-work"><a class="text-link" href="index.html#research">Back to research overview <span aria-hidden="true">←</span></a></p>
